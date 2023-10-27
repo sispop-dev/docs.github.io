@@ -1,0 +1,3951 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="The Sispop CLI wallet is a wallet first developed by Monero. Sispop has added additional commands ontop of the monero-wallet-cli and this document goes through all the Sispop and Monero CLI commands available within the sispop-wallet-cli.">
+      
+      
+      
+        <link rel="canonical" href="https://docs.sispop.site/Wallets/CliWallet/WalletCommands/">
+      
+      
+        <link rel="prev" href="../sispop-wallet-cliMacSetup/">
+      
+      
+        <link rel="next" href="../WalletRestoreSeed/">
+      
+      
+      <link rel="icon" href="../../../Sispop_favicon32x32.png">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.4.6">
+    
+    
+      
+        <title>Sispop Documentation | Sispop and Monero CLI Command Guide - Sispop Docs</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.35e1ed30.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.356b1318.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+    
+    
+      <link rel="stylesheet" href="../../../CSS/style.css">
+    
+      <link rel="stylesheet" href="../../../CSS/font.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="green">
+  
+    
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#sispop-cli-guide" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="Sispop Docs" class="md-header__button md-logo" aria-label="Sispop Docs" data-md-component="logo">
+      
+  <img src="../../../logo.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Sispop Docs
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Sispop Documentation | Sispop and Monero CLI Command Guide
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/sispop-dev/sispop-docs" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    sispop-docs
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="Sispop Docs" class="md-nav__button md-logo" aria-label="Sispop Docs" data-md-component="logo">
+      
+  <img src="../../../logo.svg" alt="logo">
+
+    </a>
+    Sispop Docs
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/sispop-dev/sispop-docs" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    sispop-docs
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Introduction/SispopNetwork/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Introduction
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Introduction/GettingStarted/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Getting Started
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../FAQ/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    FAQ
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Wallets
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            Wallets
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../WalletsOverview/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Overview
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../WhatWalletToUse/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Which wallet should I use?
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_3" id="__nav_5_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Addresses
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_3">
+            <span class="md-nav__icon md-icon"></span>
+            Addresses
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Addresses/MainAddress/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Main Address
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Addresses/SubAddress/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Sub Address
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Addresses/IntegratedAddress/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Integrated Address
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Multisignature/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Multsignature
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_5" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_5_5" id="__nav_5_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Guides
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_5_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_5_5">
+            <span class="md-nav__icon md-icon"></span>
+            Guides
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../GuiWallet/sispop-electron-guide/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Electron Gui Setup
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../ServiceNodes/GUIStakingGuide/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Gui Staking Guide
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../MobileWallet/RestoreMobileWalletGuide/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Mobile Wallet Restore
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sispop-wallet-cliMacSetup/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    CLI Mac Setup
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    CLI Wallet Commands
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    CLI Wallet Commands
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#displaying-commands" class="md-nav__link">
+    Displaying commands
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-accounts" class="md-nav__link">
+    1 Accounts
+  </a>
+  
+    <nav class="md-nav" aria-label="1 Accounts">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-creating-new-account" class="md-nav__link">
+    1.1 Creating new account
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-switching-account" class="md-nav__link">
+    1.2 Switching account
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13-changing-account-labels" class="md-nav__link">
+    1.3 Changing account labels
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#14-tagging-and-untagging-accounts" class="md-nav__link">
+    1.4 Tagging and untagging accounts:
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#15-adding-tag-descriptions" class="md-nav__link">
+    1.5 Adding Tag descriptions
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-balance" class="md-nav__link">
+    2 Balance
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-getting-the-block-height" class="md-nav__link">
+    3 Getting the Block Height
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-blackballing-transactions" class="md-nav__link">
+    4 Blackballing Transactions
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-reserve-proof" class="md-nav__link">
+    5 Reserve Proof
+  </a>
+  
+    <nav class="md-nav" aria-label="5 Reserve Proof">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51-generate-reserve-proof" class="md-nav__link">
+    5.1 Generate Reserve Proof
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52-checking-reserve-proof" class="md-nav__link">
+    5.2 Checking Reserve Proof
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-spend-proof" class="md-nav__link">
+    6 Spend Proof
+  </a>
+  
+    <nav class="md-nav" aria-label="6 Spend Proof">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#61-generate-spend-proof" class="md-nav__link">
+    6.1 Generate Spend Proof
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#62-checking-spend-proof" class="md-nav__link">
+    6.2 Checking Spend Proof
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-tx-proof" class="md-nav__link">
+    7 TX Proof
+  </a>
+  
+    <nav class="md-nav" aria-label="7 TX Proof">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#71-generate-spend-proof" class="md-nav__link">
+    7.1 Generate Spend Proof
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#72-checking-tx-proof" class="md-nav__link">
+    7.2 Checking tx Proof
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-tx-key" class="md-nav__link">
+    8 TX key
+  </a>
+  
+    <nav class="md-nav" aria-label="8 TX key">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#81-view-tx-key" class="md-nav__link">
+    8.1 View TX key
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#82-validate-transaction-with-tx-key" class="md-nav__link">
+    8.2 Validate transaction with TX key
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-tx-notes" class="md-nav__link">
+    9 Tx Notes
+  </a>
+  
+    <nav class="md-nav" aria-label="9 Tx Notes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#91-set-tx-note" class="md-nav__link">
+    9.1 Set tx note
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#92-view-tx-note" class="md-nav__link">
+    9.2 View tx note
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-changing-wallet-password" class="md-nav__link">
+    10 Changing wallet password
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11-encrypting-seed-phrase" class="md-nav__link">
+    11 Encrypting seed phrase
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../WalletRestoreSeed/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    CLI Restoring Wallet from Seed
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../WalletRestoreKeys/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    CLI Restoring Wallet from Keys
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_5_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_5_8" id="__nav_5_5_8_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Multisig
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_5_5_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_5_8">
+            <span class="md-nav__icon md-icon"></span>
+            Multisig
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../2of2Multisig/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2/2 Multisig
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../2of3Multisig/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2/3 Multisig
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../MofNMultisig/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    M/N Multsig
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Service Nodes
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            Service Nodes
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../ServiceNodes/SNOverview/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Overview
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../ServiceNodes/StakingRequirement/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Staking Requirement
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../ServiceNodes/DeregistrationRules/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Deregistration Rules
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_6_4" id="__nav_6_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Guides
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_4">
+            <span class="md-nav__icon md-icon"></span>
+            Guides
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../ServiceNodes/DebianPackageGuide/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Service Node Setup Guide
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../ServiceNodes/LauncherToDeb/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Sispop-Launcher to Debian Update Guide
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Developer/SNRPCGuide/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Service Node RPC Guide
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../ServiceNodes/GUIStakingGuide/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Gui Staking Guide
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../ServiceNodes/SNFullGuideLegacy/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Service Node Legacy Guide
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../ServiceNodes/StorageServerGuide-Testnet/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Service Node TESTNET Guide
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_6_5" id="__nav_6_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Troubleshooting
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_5">
+            <span class="md-nav__icon md-icon"></span>
+            Troubleshooting
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../ServiceNodes/OpenPort30000.md" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Port 30000 Not Open
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Sispopnet
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            Sispopnet
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Sispopnet/SispopnetOverview/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Overview
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Sispopnet/Guides/PublicTestingGuide/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Public Testing Overview
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Sispopnet/SNApps/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    SNApps
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Sispopnet/LLARP/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    LLARP
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_5" id="__nav_7_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Guides
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_5">
+            <span class="md-nav__icon md-icon"></span>
+            Guides
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Sispopnet/Guides/SispopnetGuiGuide/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Linux GUI Guide
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Sispopnet/Guides/sispopnet-mac-guide/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    macOS Gui Guide
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Sispopnet/Guides/ExitProvider/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Exit Provider Guide
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Sispopnet/Guides/ReverseSSHGuide/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Anonymous Reverse SSH Guide
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Sispopnet/Guides/sispopnet-linux-guide/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Linux Command-line Guide
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Sispopnet/Guides/Install/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Linux - Build-It-Yourself
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Sispopnet/Guides/AccessingSNApps/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Accessing SNApps
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Sispopnet/Guides/SispopnetIRC/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Joining a Sispopnet IRC Chat
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Sispopnet/Guides/HostingSNApps/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Hosting SNApps
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Sispopnet/Guides/SispopnetConfig/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Sispopnet config files
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Sispopnet/Guides/SispopnetRouter/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Set up a Sispopnet Router
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Sispopnet/Guides/ExitNode/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Exit Nodes
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Session
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            Session
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../SispopServices/Messenger/Session/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Overview
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../SispopServices/Messenger/SispopNameSystem/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Sispop Name System
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../SispopServices/Messenger/threat_model/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Threat Models
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../SispopServices/Messenger/infrastructure/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Infrastructure
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../SispopServices/Messenger/message_routing/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Message Routing
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../SispopServices/Messenger/group_chats/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Group Chats
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../SispopServices/Messenger/testing/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Testing
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../SispopServices/Messenger/multidevice/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Multi-Device
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../SispopServices/Messenger/client_side_protection/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Client Side Protection
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../SispopServices/Messenger/attachments/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Attachments
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8_11" >
+        
+          
+          <label class="md-nav__link" for="__nav_8_11" id="__nav_8_11_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Guides
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_8_11_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8_11">
+            <span class="md-nav__icon md-icon"></span>
+            Guides
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../SispopServices/Messenger/HowToRegisterSessionNames/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Register Session/Wallet names
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../SispopServices/Messenger/multi_device_setup/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Multi-Device Setup
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../SispopServices/Messenger/opengroup_setup/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    OpenGroup Setup
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../SispopServices/Messenger/JoinOpenGroupMobile/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Join Open Group on Mobile
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../SispopServices/Messenger/JoinOpenGroupDesktop/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Join Open Group on Desktop
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Blink
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            Blink
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../SispopServices/Blink/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Blink
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_10" >
+        
+          
+          <label class="md-nav__link" for="__nav_10" id="__nav_10_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Checkpointing
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_10">
+            <span class="md-nav__icon md-icon"></span>
+            Checkpointing
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Advanced/CheckpointingLip3/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Checkpointing LIP
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Advanced/CheckpointingUpdate/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Safely Receiving Sispop
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_11" >
+        
+          
+          <label class="md-nav__link" for="__nav_11" id="__nav_11_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Advanced
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_11_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_11">
+            <span class="md-nav__icon md-icon"></span>
+            Advanced
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_11_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_11_1" id="__nav_11_1_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Developer
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_11_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_11_1">
+            <span class="md-nav__icon md-icon"></span>
+            Developer
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Developer/SNRPCGuide/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Service Node RPC Guide
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Developer/DaemonRPCBeta/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Daemon RPC Guide - Beta
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Developer/WalletRPCBeta/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Wallet RPC Guide - Beta
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Developer/FAQ/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Developer FAQ
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_11_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_11_2" id="__nav_11_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Sispop Services
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_11_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_11_2">
+            <span class="md-nav__icon md-icon"></span>
+            Sispop Services
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../SispopServices/SispopServicesOverview/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Overview
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../SispopServices/Blink/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Blink
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_11_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_11_3" id="__nav_11_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Attack Prevention
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_11_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_11_3">
+            <span class="md-nav__icon md-icon"></span>
+            Attack Prevention
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Advanced/DenialofServiceAttacks/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Denial of Service Attacks
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Advanced/IPandPacketBlocking/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    IP and Packet Blocking
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Advanced/SwarmFlagging/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Swarm Flagging
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_11_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_11_4" id="__nav_11_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Contributing
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_11_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_11_4">
+            <span class="md-nav__icon md-icon"></span>
+            Contributing
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Contributing/HowToContributeToSispopDocs/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    How to Contribute to SispopDocs
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Contributing/VULNERABILITY_RESPONSE_SISPOP/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Vulnerability Response
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Contributing/Issue_Template/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Github Issue Template Example
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_11_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_11_5" id="__nav_11_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Governance
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_11_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_11_5">
+            <span class="md-nav__icon md-icon"></span>
+            Governance
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Governance/Governance/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Overview
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Governance/TheSispopFoundation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    The Sispop Foundation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Governance/SispopFundingSystem/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Sispop Funding System
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Advanced/Cryptoeconomics/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Cryptoeconomics
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Advanced/SybilResistance/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Sybil Resistance
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Advanced/DynamicBlockSize/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Dynamic Block Size
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Advanced/CryptoNoteElements/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    CryptoNote Elements
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Advanced/sispopd/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    sispopd
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_11_11" >
+        
+          
+          <label class="md-nav__link" for="__nav_11_11" id="__nav_11_11_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Guides
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_11_11_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_11_11">
+            <span class="md-nav__icon md-icon"></span>
+            Guides
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Advanced/UsingTor/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Using Tor
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Advanced/Debugging/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Debugging
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Advanced/AcceptingSispop/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Accepting Sispop for Merchants and Exchanges
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#displaying-commands" class="md-nav__link">
+    Displaying commands
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-accounts" class="md-nav__link">
+    1 Accounts
+  </a>
+  
+    <nav class="md-nav" aria-label="1 Accounts">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-creating-new-account" class="md-nav__link">
+    1.1 Creating new account
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-switching-account" class="md-nav__link">
+    1.2 Switching account
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13-changing-account-labels" class="md-nav__link">
+    1.3 Changing account labels
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#14-tagging-and-untagging-accounts" class="md-nav__link">
+    1.4 Tagging and untagging accounts:
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#15-adding-tag-descriptions" class="md-nav__link">
+    1.5 Adding Tag descriptions
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-balance" class="md-nav__link">
+    2 Balance
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-getting-the-block-height" class="md-nav__link">
+    3 Getting the Block Height
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-blackballing-transactions" class="md-nav__link">
+    4 Blackballing Transactions
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-reserve-proof" class="md-nav__link">
+    5 Reserve Proof
+  </a>
+  
+    <nav class="md-nav" aria-label="5 Reserve Proof">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51-generate-reserve-proof" class="md-nav__link">
+    5.1 Generate Reserve Proof
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52-checking-reserve-proof" class="md-nav__link">
+    5.2 Checking Reserve Proof
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-spend-proof" class="md-nav__link">
+    6 Spend Proof
+  </a>
+  
+    <nav class="md-nav" aria-label="6 Spend Proof">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#61-generate-spend-proof" class="md-nav__link">
+    6.1 Generate Spend Proof
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#62-checking-spend-proof" class="md-nav__link">
+    6.2 Checking Spend Proof
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-tx-proof" class="md-nav__link">
+    7 TX Proof
+  </a>
+  
+    <nav class="md-nav" aria-label="7 TX Proof">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#71-generate-spend-proof" class="md-nav__link">
+    7.1 Generate Spend Proof
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#72-checking-tx-proof" class="md-nav__link">
+    7.2 Checking tx Proof
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-tx-key" class="md-nav__link">
+    8 TX key
+  </a>
+  
+    <nav class="md-nav" aria-label="8 TX key">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#81-view-tx-key" class="md-nav__link">
+    8.1 View TX key
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#82-validate-transaction-with-tx-key" class="md-nav__link">
+    8.2 Validate transaction with TX key
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-tx-notes" class="md-nav__link">
+    9 Tx Notes
+  </a>
+  
+    <nav class="md-nav" aria-label="9 Tx Notes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#91-set-tx-note" class="md-nav__link">
+    9.1 Set tx note
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#92-view-tx-note" class="md-nav__link">
+    9.2 View tx note
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-changing-wallet-password" class="md-nav__link">
+    10 Changing wallet password
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11-encrypting-seed-phrase" class="md-nav__link">
+    11 Encrypting seed phrase
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+<h1 id="sispop-cli-guide">Sispop CLI Guide<a class="headerlink" href="#sispop-cli-guide" title="Permanent link">&para;</a></h1>
+<p>The Sispop CLI wallet is a wallet first developed by Monero. Sispop has added additional commands ontop of the <code>monero-wallet-cli</code> and this document goes through all the Sispop and Monero CLI commands available within the <code>sispop-wallet-cli</code>.</p>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/e6NwsJbm5wY" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+<h2 id="displaying-commands">Displaying commands<a class="headerlink" href="#displaying-commands" title="Permanent link">&para;</a></h2>
+<p>The <code>sispop-wallet-cli</code> has multiple commands to conduct different operations on the Sispop Blockchain. By typing <code>help</code> and clicking enter after loading your wallet will bring up the commands that can be used.</p>
+<h2 id="1-accounts">1 Accounts<a class="headerlink" href="#1-accounts" title="Permanent link">&para;</a></h2>
+<h3 id="11-creating-new-account">1.1 Creating new account<a class="headerlink" href="#11-creating-new-account" title="Permanent link">&para;</a></h3>
+<p>When a wallet is generated it will automatically have an account labelled <code>Primary account</code> with index <code>0</code>. If at any time you wish to create an additional account use the command:</p>
+<div class="codehilite"><pre><span></span><code>account new &lt;label text with white spaces allowed&gt;
+</code></pre></div>
+
+<p>This command will create a subaddress which is labelled with a tag and index number. This subaddress will share the same seed as your Primary address. To ensure this new account is displayed you must type <code>exit</code> to save your session.</p>
+<p>You will note that there is now an asterisk to the left of index 1. The asterisks show us the account in which the commands we run will apply to.</p>
+<blockquote>
+<p>Note: Restoring your wallet from your seed will not restore your accounts as the index of your subaddress data is stored on your computer within your wallet file. All the funds stored in your additional accounts will be shown in your Primary account if you need to restore your wallet from scratch.</p>
+</blockquote>
+<div class="codehilite"><pre><span></span><code>[wallet L9LnR2]: account new Secondary account
+[wallet L9LnR2]: Untagged accounts:
+[wallet L9LnR2]: Account Balance Unlocked balance Label
+[wallet L9LnR2]: 0 L9LnR2 0.000000000 0.000000000 Primary account
+[wallet L9LnR2]: * 1 LY5J5W 0.000000000 0.000000000 Secondary account
+[wallet L9LnR2]: ----------------------------------------------------------------------------------
+[wallet L9LnR2]: Total 0.000000000 0.000000000
+</code></pre></div>
+
+<h3 id="12-switching-account">1.2 Switching account<a class="headerlink" href="#12-switching-account" title="Permanent link">&para;</a></h3>
+<p>When transferring out or receiving to a specific account we need to make sure that the account we are performing the action is the one the CLI is currently connected to. An asterisk will show which account we are connected to. In the below example the asterisk is shown to the left of Secondary account so any operations will be associated with that account.</p>
+<p>Each of the accounts connected to your Primary address will have an index associated with them. The index number will be shown to the left of the Account column. By default, index “0” is your Primary account.</p>
+<div class="codehilite"><pre><span></span><code>[wallet L9LnR2]: account new Secondary account
+[wallet L9LnR2]: Untagged accounts:
+[wallet L9LnR2]: Account Balance Unlocked balance Label
+[wallet L9LnR2]: 0 L9LnR2 0.000000000 0.000000000 Primary account
+[wallet L9LnR2]: * 1 LY5J5W 0.000000000 0.000000000 Secondary account
+[wallet L9LnR2]: ----------------------------------------------------------------------------------
+[wallet L9LnR2]: Total 0.000000000 0.000000000
+</code></pre></div>
+
+<p>To switch between the accounts you have created run the command:</p>
+<div class="codehilite"><pre><span></span><code>account switch &lt;index&gt;
+</code></pre></div>
+
+<p>After running the command a similar output shown below will be on your terminal.</p>
+<div class="codehilite"><pre><span></span><code>[wallet L9LnR2]: account switch 0
+[wallet L9LnR2]: Currently selected account: [0] Primary account
+[wallet L9LnR2]: Tag: (No tag assigned)
+[wallet L9LnR2]: Balance: 0.000000000, unlocked balance: 0.000000000
+</code></pre></div>
+
+<h3 id="13-changing-account-labels">1.3 Changing account labels<a class="headerlink" href="#13-changing-account-labels" title="Permanent link">&para;</a></h3>
+<p>To change the label name connected to a specific Sispop Primary or Sub-address use the command:</p>
+<div class="codehilite"><pre><span></span><code>account label &lt;index&gt; &lt;label text with white spaces allowed&gt;
+</code></pre></div>
+
+<p>Replacing <code>&lt;index&gt;</code> with the index number associated with the account you wish to relabel, and replacing <code>&lt;label text with white spaces allowed&gt;</code> with the new label you would like to name the specified account.</p>
+<p>Below shows the current accounts and labels for a specific wallet.</p>
+<div class="codehilite"><pre><span></span><code>[wallet LCmjSH]: Untagged accounts:
+[wallet LCmjSH]: Account Balance Unlocked balance Label
+[wallet LCmjSH]: * 0 LCmjSH 0.000000000 0.000000000 Primary account
+[wallet LCmjSH]: 1 LTLgNy 0.000000000 0.000000000 Secondary
+[wallet LCmjSH]: ----------------------------------------------------------------------------------
+[wallet LCmjSH]: Total 0.000000000 0.000000000
+</code></pre></div>
+
+<p>Using the command <code>account label 0 My Account</code> we have changed the label connected to our Primary address from “Primary account” to “My Account”.</p>
+<div class="codehilite"><pre><span></span><code>[wallet LCmjSH]: account label 0 My Account
+[wallet LCmjSH]: Untagged accounts:
+[wallet LCmjSH]: Account Balance Unlocked balance Label
+[wallet LCmjSH]: * 0 LCmjSH 0.000000000 0.000000000 My Account
+[wallet LCmjSH]: 1 LTLgNy 0.000000000 0.000000000 Secondary
+[wallet LCmjSH]: ----------------------------------------------------------------------------------
+[wallet LCmjSH]: Total 0.000000000 0.000000000
+</code></pre></div>
+
+<h3 id="14-tagging-and-untagging-accounts">1.4 Tagging and untagging accounts:<a class="headerlink" href="#14-tagging-and-untagging-accounts" title="Permanent link">&para;</a></h3>
+<p>The <code>sispop-wallet-cli</code> allows you to group accounts by tagging or untagging them.</p>
+<p>Below shows a wallet with 4 accounts, Dog, Kid 1 and Kid 2.</p>
+<div class="codehilite"><pre><span></span><code>[wallet LVP3bv]: Untagged accounts:
+[wallet LVP3bv]: Account Balance Unlocked balance Label
+[wallet LVP3bv]: 0 LAXk6e 0.000000000 0.000000000 My Account
+[wallet LVP3bv]: 1 LRDvY6 0.000000000 0.000000000 Dog
+[wallet LVP3bv]: 2 LVJDwN 0.000000000 0.000000000 Kid 1
+[wallet LVP3bv]: * 3 LVP3bv 0.000000000 0.000000000 Kid 2
+[wallet LVP3bv]: ----------------------------------------------------------------------------------
+[wallet LVP3bv]: Total 0.000000000 0.000000000
+</code></pre></div>
+
+<p>We can tag a single account with the following command:</p>
+<div class="codehilite"><pre><span></span><code>account tag &lt;tag_name&gt; &lt;account_index&gt;
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code>[wallet LVP3bv]: account tag Pets 1
+[wallet LVP3bv]: Accounts with tag: Pets
+[wallet LVP3bv]: Tag&#39;s description:
+[wallet LVP3bv]: Account Balance Unlocked balance Label
+[wallet LVP3bv]: 1 LRDvY6 0.000000000 0.000000000 Dog
+[wallet LVP3bv]: ----------------------------------------------------------------------------------
+[wallet LVP3bv]: Total 0.000000000 0.000000000
+</code></pre></div>
+
+<p>When needing to perform multiple tags we can do it through one command:</p>
+<div class="codehilite"><pre><span></span><code>account tag &lt;tag_name&gt; &lt;account_index_1&gt; [&lt;account_index_2&gt; ...]
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code>[wallet LVP3bv]: account tag Family 2 3
+[wallet LVP3bv]: Accounts with tag: Family
+[wallet LVP3bv]: Tag&#39;s description:
+[wallet LVP3bv]: Account Balance Unlocked balance Label
+[wallet LVP3bv]: 2 LVJDwN 0.000000000 0.000000000 Kid 1
+[wallet LVP3bv]: * 3 LVP3bv 0.000000000 0.000000000 Kid 2
+[wallet LVP3bv]: ----------------------------------------------------------------------------------
+[wallet LVP3bv]: Total 0.000000000 0.000000000
+</code></pre></div>
+
+<p>Similarly we can untag accounts by running the following command:</p>
+<div class="codehilite"><pre><span></span><code>account untag &lt;account_index_1&gt; [&lt;account_index_2&gt; ...]
+</code></pre></div>
+
+<p>Using the above exampled wallet we will remove our “Dog” account from “Pets”.</p>
+<div class="codehilite"><pre><span></span><code>[wallet LVP3bv]: account untag 1
+[wallet LVP3bv]: Accounts with tag: Family
+[wallet LVP3bv]: Tag&#39;s description:
+[wallet LVP3bv]: Account Balance Unlocked balance Label
+[wallet LVP3bv]: 2 LVJDwN 0.000000000 0.000000000 Kid 1
+[wallet LVP3bv]: * 3 LVP3bv 0.000000000 0.000000000 Kid 2
+[wallet LVP3bv]: ----------------------------------------------------------------------------------
+[wallet LVP3bv]: Total 0.000000000 0.000000000
+[wallet LVP3bv]:
+[wallet LVP3bv]: Untagged accounts:
+[wallet LVP3bv]: Account Balance Unlocked balance Label
+[wallet LVP3bv]: 0 LAXk6e 0.000000000 0.000000000 My Account
+[wallet LVP3bv]: 1 LRDvY6 0.000000000 0.000000000 Dog
+[wallet LVP3bv]: ----------------------------------------------------------------------------------
+[wallet LVP3bv]: Total 0.000000000 0.000000000
+</code></pre></div>
+
+<h3 id="15-adding-tag-descriptions">1.5 Adding Tag descriptions<a class="headerlink" href="#15-adding-tag-descriptions" title="Permanent link">&para;</a></h3>
+<p>If you require additional information attached to a specific tag you can add a description with the following command:</p>
+<div class="codehilite"><pre><span></span><code>account tag_description &lt;tag_name&gt; &lt;description&gt;
+</code></pre></div>
+
+<p>For example:</p>
+<div class="codehilite"><pre><span></span><code>[wallet LVP3bv]: account tag_description Family This is my family.
+[wallet LVP3bv]: Accounts with tag: Family
+[wallet LVP3bv]: Tag&#39;s description: This is my family.
+[wallet LVP3bv]: Account Balance Unlocked balance Label
+[wallet LVP3bv]: 2 LVJDwN 0.000000000 0.000000000 Kid 1
+[wallet LVP3bv]: * 3 LVP3bv 0.000000000 0.000000000 Kid 2
+[wallet LVP3bv]: ----------------------------------------------------------------------------------
+[wallet LVP3bv]: Total 0.000000000 0.000000000
+</code></pre></div>
+
+<h2 id="2-balance">2 Balance<a class="headerlink" href="#2-balance" title="Permanent link">&para;</a></h2>
+<p>To check the balance of your wallet you can run one of two commands:</p>
+<p><code>balance</code> or <code>balance detail</code></p>
+<p>Running the command <code>balance</code> will generated a simple output showing your balance and unlocked balance of the specific account you are in. For example:</p>
+<div class="codehilite"><pre><span></span><code>[wallet T6TmZX]: balance
+Currently selected account: [0] Primary account
+Tag: (No tag assigned)
+Balance: 172286.035054991, unlocked balance: 172086.338373771
+</code></pre></div>
+
+<p>While running the command <code>balance detail</code> will generate a more detailed output, showing the account number, first few characters of the address, balance, unlocked balance, Outputs and the Label of the account. For example:</p>
+<div class="codehilite"><pre><span></span><code>[wallet T6TmZX]: balance detail
+Currently selected account: [0] Primary account
+Tag: (No tag assigned)
+Balance: 172286.035054991, unlocked balance: 172086.338373771
+Balance per address:
+Address Balance Unlocked balance Outputs Label
+0 T6TmZX 172286.035054991 172086.338373771  3347 Primary account
+</code></pre></div>
+
+<p>There are other commands that will also output the balance which have been covered by this guide, such as the <code>account</code> command.</p>
+<h2 id="3-getting-the-block-height">3 Getting the Block Height<a class="headerlink" href="#3-getting-the-block-height" title="Permanent link">&para;</a></h2>
+<p>To show the blockchain height run the command:</p>
+<div class="codehilite"><pre><span></span><code>bc_height
+</code></pre></div>
+
+<h2 id="4-blackballing-transactions">4 Blackballing Transactions<a class="headerlink" href="#4-blackballing-transactions" title="Permanent link">&para;</a></h2>
+<p>Blackballing transactions allows you to ignore others' outputs (containers of money) that are known to be spent in a certain transaction.</p>
+<p>For example let’s imagine that txid: <code>4f4b371a0da8858bbeab8a40ff37de1f6ff33e64a616e5ced8239062570b7542</code> is known to be fake and if this txid is seen within a RingCT transaction the network can assume it is fake, therefore an actor has a better chance of deducing the real transaction within the RingCT.</p>
+<p>By blackballing the above txid we remove the chance of it being used within our RingCT.</p>
+<p>To do this we will use the following command:</p>
+<div class="codehilite"><pre><span></span><code>blackball &lt;output public key&gt; | &lt;filename&gt; [add]
+</code></pre></div>
+
+<p>For example:</p>
+<div class="codehilite"><pre><span></span><code>[wallet LAXk6e]: blackball 4f4b371a0da8858bbeab8a40ff37de1f6ff33e64a616e5ced8239062570b7542
+</code></pre></div>
+
+<p>To check if the txid was added to our list of txids not to use we can use the following command:</p>
+<div class="codehilite"><pre><span></span><code>blackballed &lt;output public key&gt;
+</code></pre></div>
+
+<p>If the txid is on our list the following will output:</p>
+<div class="codehilite"><pre><span></span><code>[wallet LAXk6e]: blackballed 4f4b371a0da8858bbeab8a40ff37de1f6ff33e64a616e5ced8239062570b7542
+[wallet LAXk6e]: Blackballed: &lt;4f4b371a0da8858bbeab8a40ff37de1f6ff33e64a616e5ced8239062570b7542&gt;
+</code></pre></div>
+
+<p>Alternatively if the txid is not on our list the following will output:</p>
+<div class="codehilite"><pre><span></span><code>[wallet LAXk6e]: blackballed 4f4b371a0da8858bbeab8a40ff37de1f6ff33e64a616e5ced8239062570b7542
+[wallet LAXk6e]: not blackballed: &lt;4f4b371a0da8858bbeab8a40ff37de1f6ff33e64a616e5ced8239062570b7542&gt;
+</code></pre></div>
+
+<p>To unblackball a txid use the following command:</p>
+<div class="codehilite"><pre><span></span><code>unblackball &lt;output public key&gt;
+</code></pre></div>
+
+<p>For example:</p>
+<div class="codehilite"><pre><span></span><code>[wallet LAXk6e]: unblackball 4f4b371a0da8858bbeab8a40ff37de1f6ff33e64a616e5ced8239062570b7542
+</code></pre></div>
+
+<h2 id="5-reserve-proof">5 Reserve Proof<a class="headerlink" href="#5-reserve-proof" title="Permanent link">&para;</a></h2>
+<p>Reserve Proofs are used to generate a signature proving that you own an amount of Sispop, with the option to sign the reserve proof with a key.</p>
+<p>For example let’s imagine you see a car for sale but they will accept Sispop as payment, however they have advised in their online listing that they are only interested in serious buyers and require you to prove you have the Sispop within your initial contact. Luckily we can use the Reserve Proof commands for this proof.</p>
+<h3 id="51-generate-reserve-proof">5.1 Generate Reserve Proof<a class="headerlink" href="#51-generate-reserve-proof" title="Permanent link">&para;</a></h3>
+<p>To begin we will need to run the <code>get_reserve_proof</code> command to generate our proof.</p>
+<div class="codehilite"><pre><span></span><code>get_reserve_proof (all|&lt;amount&gt;) [&lt;message&gt;]
+</code></pre></div>
+
+<p>If the individual you are sending this proof to requires you to prove you have 1000 Sispop you will need to replace the section <code>(all|&lt;amount&gt;)</code> with a 1000, otherwise replace it with the amount you need to prove you have reserved. If you want to put an extra layer of encryption over the file replace <code>[&lt;message&gt;]</code> with a password.</p>
+<p>Your command will similar to the below command:</p>
+<div class="codehilite"><pre><span></span><code>get_reserve_proof 1000 Car
+</code></pre></div>
+
+<p>The Cli will request your wallet password and once your password is entered it will tell you it generated a signature file.</p>
+<div class="codehilite"><pre><span></span><code>[wallet T6TmZX]: get_reserve_proof 1000 Car
+Wallet password:
+signature file saved to: sispop_reserve_proof
+</code></pre></div>
+
+<p>This signature file <code>sispop_reserve_proof</code> will be saved in your Sispop folder, where your daemon and wallet keys are. Keep in mind every time you run the <code>get_reserve_proof</code> command it will overwrite your <code>sispop_reserve_proof</code> file.</p>
+<p>You will want to send this file to the person who requires the proof. You can upload the <code>sispop_reserve_proof</code> file through <a href="https://transfer.sh/">https://transfer.sh/</a> by running the command within the folder of your signature file:</p>
+<div class="codehilite"><pre><span></span><code>curl --upload-file ./sispop_reserve_proof https://transfer.sh/sispop_reserve_proof`
+</code></pre></div>
+
+<p>The terminal will then print out a link to your signature file which you can then provide to the individual performing the check.</p>
+<div class="codehilite"><pre><span></span><code>https://transfer.sh/QhoC7/sispop_reserve_proof
+</code></pre></div>
+
+<p>Make sure you provide the following to the individual who will be checking your reserve proof:</p>
+<ul>
+<li>
+<p>The sispop_reserve_proof file through the transfer.sh link.</p>
+</li>
+<li>
+<p>The sispop address you are proving has Sispop in it.</p>
+</li>
+<li>
+<p>The <code>&lt;message&gt;</code> if you encrypted the file.</p>
+</li>
+</ul>
+<h3 id="52-checking-reserve-proof">5.2 Checking Reserve Proof<a class="headerlink" href="#52-checking-reserve-proof" title="Permanent link">&para;</a></h3>
+<p>To check a reserve proof we need to first have the <code>sispop_reserve_proof</code> file in our Sispop folder.</p>
+<p>If you do not have the <code>sispop_reserve_proof</code> file in your sispop folder request the individual sending the file to you to use <a href="https://transfer.sh/">https://transfer.sh/</a>, once they send you the link to their <code>sispop_reserve_proof</code> you can use the following command to download it.</p>
+<div class="codehilite"><pre><span></span><code>curl &lt;link&gt; -o sispop_reserve_proof
+</code></pre></div>
+
+<p>Replacing <code>&lt;link&gt;</code> with the link to download the <code>sispop_reserve_proof</code>.</p>
+<p>Now that the <code>sispop_reserve_proof</code> is in our folder we can run the following command:</p>
+<div class="codehilite"><pre><span></span><code>check_reserve_proof &lt;address&gt; &lt;signature_file&gt; [&lt;message&gt;]
+</code></pre></div>
+
+<p>Where <code>&lt;address&gt;</code> is the address of the wallet where the command get_reserve_proof was ran. <code>&lt;signiture_file&gt;</code> is the file that was received from the individual sending you the reserve proof, normally generated as <code>sispop_reserve_proof</code> and <code>&lt;message&gt;</code> is the key set by the individual who sent you the reserve proof.</p>
+<p>Therefor for the previous example where we created a reserve proof for 1000 sispop and signed with “car”, we would run the command:</p>
+<div class="codehilite"><pre><span></span><code>check_reserve_proof T6TmZX8EzZVjS9zNg7zAsrEQFDgcVC2qV2ZMyoWsbyK4SNB2SwMHZtMhPSsFyTmRBQUaGVF5k3qy5CMFM6Lvj7gi3AeszDag7 sispop_reserve_proof Car
+</code></pre></div>
+
+<p>If all goes well, the terminal will output the following:</p>
+<div class="codehilite"><pre><span></span><code>Good signature -- total: 1014.862440831, spent: 0.000000000, unspent: 1014.862440831
+</code></pre></div>
+
+<p>You may note that it shows a reserve proof which is greater than 1000, this is because the command is adding up all the transactions into the address specified until it is greater than the reserve proof set.</p>
+<h2 id="6-spend-proof">6 Spend Proof<a class="headerlink" href="#6-spend-proof" title="Permanent link">&para;</a></h2>
+<p>Spend Proofs are used to generate a signature proving that you generated a TXID, with the option to sign the spend proof with a key.</p>
+<p>For example let’s imagine you have bought a car from a dealership with sispop and have sent 1000 sispop to the seller. Unfortunately the dealer does not know which transaction is yours as he has received 5 transactions of 1000 sispop in the same block for 5 different cars. He knows the txid’s but wants you to prove that you have generate one of the txid’s in his list. Luckily we can prove we generated the txid by using the <code>get_spend_proof</code> command.</p>
+<h3 id="61-generate-spend-proof">6.1 Generate Spend Proof<a class="headerlink" href="#61-generate-spend-proof" title="Permanent link">&para;</a></h3>
+<p>To begin we will first need to find the txid associated with our transaction. To do this run the following command in our wallet:</p>
+<div class="codehilite"><pre><span></span><code>show_transfers
+</code></pre></div>
+
+<p>The terminal will output a list of transactions in and out of your address. You should have a transaction in your list with the amount you spent to the dealership. Copy the txid(by highlighting) associated with this transaction and save it in a notepad for later.</p>
+<p>We can now run the <code>get_spend_proof</code> command to generate our proof.</p>
+<div class="codehilite"><pre><span></span><code>get_spend_proof &lt;txid&gt; [&lt;message&gt;]
+</code></pre></div>
+
+<p>Replacing <code>&lt;txid&gt;</code> with the txid of our transfer out and replacing <code>&lt;message&gt;</code> if we want to add a password to the proof. If all went well the terminal will output the following text:</p>
+<div class="codehilite"><pre><span></span><code>signature file saved to: sispop_spend_proof
+</code></pre></div>
+
+<p>This signature file <code>sispop_spend_proof</code> will be saved in your Sispop folder, where your daemon and wallet keys are. Keep in mind every time you run the <code>get_spend_proof</code> command it will overwrite your <code>sispop_spend_proof file</code>.</p>
+<p>You will want to send this file to the person who requires the proof. You can upload the sispop_spend_proof file through <a href="https://transfer.sh/">https://transfer.sh/</a> by running the command within the folder of your signature file:</p>
+<div class="codehilite"><pre><span></span><code>curl --upload-file ./sispop_spend_proof https://transfer.sh/sispop_spend_proof
+</code></pre></div>
+
+<p>The terminal will then print out a link to your signature file which you can then provide to the individual performing the check. For example:</p>
+<div class="codehilite"><pre><span></span><code>https://transfer.sh/QhoC7/sispop_spend_proof
+</code></pre></div>
+
+<p>Make sure you provide the following to the individual who will be checking your reserve proof:</p>
+<ul>
+<li>
+<p>The <code>sispop_spend_proof</code> file through the transfer.sh link.</p>
+</li>
+<li>
+<p>The sispop transaction txid associated with the transaction you are proving you generated.</p>
+</li>
+<li>
+<p>The <code>&lt;message&gt;</code> if you encrypted the file.</p>
+</li>
+</ul>
+<h3 id="62-checking-spend-proof">6.2 Checking Spend Proof<a class="headerlink" href="#62-checking-spend-proof" title="Permanent link">&para;</a></h3>
+<p>To check a spend proof we need to first have the <code>sispop_spend_proof</code> file in our Sispop folder and the txid associated with the transaction being proved.</p>
+<p>If you do not have the <code>sispop_spend_proof</code> file in your sispop folder request the individual sending the file to you to use <a href="https://transfer.sh/">https://transfer.sh/</a>, once they send you the link to their <code>sispop_spend_proof</code> you can use the following command to download it.</p>
+<div class="codehilite"><pre><span></span><code>curl &lt;link&gt; -o sispop_spend_proof
+</code></pre></div>
+
+<p>Replacing <code>&lt;link&gt;</code> with the link to download the <code>sispop_spend_proof</code>.</p>
+<p>Now that the <code>sispop_spend_proof</code> is in our folder we can run the following command:</p>
+<div class="codehilite"><pre><span></span><code>check_spend_proof &lt;txid&gt; &lt;signature_file&gt; [&lt;message&gt;]
+</code></pre></div>
+
+<p>Where <code>&lt;txid&gt;</code> is the txid associated with the transaction that is being proved. <code>&lt;signiture_file&gt;</code> is the file that was received from the individual sending you the spend proof, normally generated as <code>sispop_spend_proof</code> and <code>&lt;message&gt;</code> is the key set by the individual who sent you the spend proof.</p>
+<p>An example would look like the following command</p>
+<div class="codehilite"><pre><span></span><code>check_spend_proof 20eb3b5545d6587e5a379feb2fc69b43d4f8b6b825bb7eff78e263d4e7e8eaa9 sispop_spend_proof car
+</code></pre></div>
+
+<p>If all goes well, the terminal will output the following:</p>
+<div class="codehilite"><pre><span></span><code>Good signature
+</code></pre></div>
+
+<p>If you receive a <code>Good signature</code> message that should be a good proof that the txid you are checking was generated from the sender. Keep in mind however that this can potentially not always be the case, considering someone could get access to someone else's computer thus having access to this file.</p>
+<h2 id="7-tx-proof">7 TX Proof<a class="headerlink" href="#7-tx-proof" title="Permanent link">&para;</a></h2>
+<p>TX Proofs are used to generate a signature file proving that you generated a TXID, with the option to sign the spend proof with a key. TX proofs work similar to Reserve Proof’s and Spend Proofs however they show more detailed information.</p>
+<p>For example let’s imagine you have bought a car from a dealership with sispop and have sent 1000 sispop to the seller. Unfortunately the dealer does not know which transaction is yours as he has received 5 transactions of 1000 sispop in the same block for 5 different cars. He knows the txid’s but wants you to prove that you have generate one of the txid’s in his list. Luckily we can prove we generated the txid by using the get_tx_proof command.</p>
+<h3 id="71-generate-spend-proof">7.1 Generate Spend Proof<a class="headerlink" href="#71-generate-spend-proof" title="Permanent link">&para;</a></h3>
+<p>To begin we will first need to find the txid associated with our transaction. To do this run the following command in our wallet:</p>
+<div class="codehilite"><pre><span></span><code>show_transfers
+</code></pre></div>
+
+<p>The terminal will output a list of transactions in and out of your address. You should have a transaction in your list with the amount you spent to the dealership. Copy the txid(by highlighting) associated with this transaction and save it in a notepad for later.</p>
+<p>We can now run the <code>get_tx_proof</code> command to generate our proof.</p>
+<div class="codehilite"><pre><span></span><code>get_tx_proof &lt;txid&gt; &lt;address&gt; [&lt;message&gt;]
+</code></pre></div>
+
+<p>Replacing <code>&lt;txid&gt;</code> with the txid of our transfer out, <code>&lt;address&gt;</code> with the receiver's address, and replacing <code>&lt;message&gt;</code> if we want to add a password to the proof. If all went well the terminal will output the following text:</p>
+<div class="codehilite"><pre><span></span><code>signature file saved to: sispop_tx_proof
+</code></pre></div>
+
+<p>This signature file <code>sispop_tx_proof</code> will be saved in your Sispop folder, where your daemon and wallet keys are. Keep in mind every time you run the <code>get_tx_proof</code> command it will overwrite your <code>sispop_tx_proof</code> file.</p>
+<p>You will want to send this file to the person who requires the proof. You can upload the <code>sispop_tx_proof</code> file through <a href="https://transfer.sh/">https://transfer.sh/</a> by running the command within the folder of your signature file:</p>
+<div class="codehilite"><pre><span></span><code>curl --upload-file ./sispop_tx_proof https://transfer.sh/sispop_tx_proof
+</code></pre></div>
+
+<p>The terminal will then print out a link to your signature file which you can then provide to the individual performing the check. For example:</p>
+<div class="codehilite"><pre><span></span><code>https://transfer.sh/QhoC7/sispop_tx_proof
+</code></pre></div>
+
+<p>Make sure you provide the following to the individual who will be checking your reserve proof:</p>
+<ul>
+<li>
+<p>The <code>sispop_tx_proof</code> file through the transfer.sh link.</p>
+</li>
+<li>
+<p>The sispop transaction txid associated with the transaction you are proving you generated.</p>
+</li>
+<li>
+<p>The receivers sispop address.</p>
+</li>
+<li>
+<p>The <code>&lt;message&gt;</code> if you encrypted the file.</p>
+</li>
+</ul>
+<h3 id="72-checking-tx-proof">7.2 Checking tx Proof<a class="headerlink" href="#72-checking-tx-proof" title="Permanent link">&para;</a></h3>
+<p>To check a tx proof we need to first have the <code>sispop_tx_proof</code> file in our Sispop folder, the receiver's address and the txid associated with the transaction being proved.</p>
+<p>If you do not have the <code>sispop_tx_proof</code> file in your sispop folder request the individual sending the file to you to use <a href="https://transfer.sh/">https://transfer.sh/</a>, once they send you the link to their <code>sispop_tx_proof</code> you can use the following command to download it.</p>
+<div class="codehilite"><pre><span></span><code>curl &lt;link&gt; -o sispop_tx_proof
+</code></pre></div>
+
+<p>Replacing <code>&lt;link&gt;</code> with the link to download the <code>sispop_tx_proof</code>.</p>
+<p>Now that the <code>sispop_tx_proof</code> is in our folder we can run the following command:</p>
+<div class="codehilite"><pre><span></span><code>check_tx_proof &lt;txid&gt; &lt;address&gt; &lt;signature_file&gt; [&lt;message&gt;]
+</code></pre></div>
+
+<p>Where <code>&lt;txid&gt;</code> is the txid associated with the transaction that is being proved, <code>&lt;address&gt;</code> is the receiver’s address and <code>&lt;signiture_file&gt;</code> is the file that was received from the individual sending you the tx proof, normally generated as <code>sispop_tx_proof</code> and <code>&lt;message&gt;</code> is the key set by the individual who sent you the tx proof.</p>
+<p>An example would look like the following command:</p>
+<div class="codehilite"><pre><span></span><code>check_tx_proof 3f8c62b4d83100ff4f89b44a96350e65aeaa83a9b4273c31f94b9aa12e713044 TRrEpWMLd3rRuirYqsjg1iaNsukAAojWjFDhJ2kK2o4uM6tkcjMerA4SZNat6QHEYe1SoGCFQddVPgRqmkA8kARX1ffU1Wcjc sispop_tx_proof
+</code></pre></div>
+
+<p>If all goes well, the terminal will output the following:</p>
+<div class="codehilite"><pre><span></span><code>Good signature
+TRrEpWMLd3rRuirYqsjg1iaNsukAAojWjFDhJ2kK2o4uM6tkcjMerA4SZNat6QHEYe1SoGCFQddVPgRqmkA8kARX1ffU1Wcjc received 40000.000000 in txid &lt;3f8c62b4d83100ff4f89b44a96350e65aeaa83a9b4273c31f94b9aa12e713044&gt;
+This transaction has 1 confirmations
+</code></pre></div>
+
+<p>If you receive a <code>Good signature</code> message that should be a good proof that the txid you are checking was generated from the sender. Keep in mind however that this can potentially not always be the case, considering someone could get access to someone else's computer thus having access to this file.</p>
+<h2 id="8-tx-key">8 TX key<a class="headerlink" href="#8-tx-key" title="Permanent link">&para;</a></h2>
+<p>A TX key is a private key associated with a TXid. Only the wallet that has sent the transaction can generate a TX key from the TXID that both parties can see. A TX key can be used to validate a transaction on a case by case basis. In essence, you can provide the tx key, txid and the receiver address to someone to prove you had generate that transaction.</p>
+<h3 id="81-view-tx-key">8.1 View TX key<a class="headerlink" href="#81-view-tx-key" title="Permanent link">&para;</a></h3>
+<p>To view the TX key of a specific transaction you have generate you will need to run the command:</p>
+<div class="codehilite"><pre><span></span><code>get_tx_key &lt;txid&gt;
+</code></pre></div>
+
+<p>Where <code>&lt;txid&gt;</code> is the transaction id associated with the transfer out you are proving is yours.</p>
+<p>The terminal will prompt the user for the wallets password and then print out the tx key, which will look similar to:</p>
+<div class="codehilite"><pre><span></span><code>[wallet T6TmZX]: get_tx_key d5fb415aad43f4e45bc72566d5ad4c8f12629db1f924d953efc2521c137a987f
+Wallet password:
+Tx key: 5dfc4d677e2707317f306219b6aa445feaab4c652927237c012f7e72cb41bf0e
+</code></pre></div>
+
+<p>Provide the <code>&lt;tx key&gt;</code> with the <code>&lt;txid&gt;</code> and <code>&lt;receiving address&gt;</code> to the individual who will run the validation, thus this will prove you generated the transaction.</p>
+<h3 id="82-validate-transaction-with-tx-key">8.2 Validate transaction with TX key<a class="headerlink" href="#82-validate-transaction-with-tx-key" title="Permanent link">&para;</a></h3>
+<p>Once we have a <code>&lt;tx key&gt;</code>, <code>&lt;txid&gt;</code> and <code>&lt;receiving address&gt;</code> from a specific transaction we can use the following command to prove they are all associated:</p>
+<div class="codehilite"><pre><span></span><code>check_tx_key &lt;txid&gt; &lt;txkey&gt; &lt;address&gt;
+</code></pre></div>
+
+<p>For the previous example we would run the following command from any sispop wallet:</p>
+<div class="codehilite"><pre><span></span><code>check_tx_key d5fb415aad43f4e45bc72566d5ad4c8f12629db1f924d953efc2521c137a987f 5dfc4d677e2707317f306219b6aa445feaab4c652927237c012f7e72cb41bf0e T6TZ2VaG1p9PQkDgdVCYwnjoxYSU7ErXX56etGsqHLugAGqynFwBvP4dnN7wvYCcJfMa9LPgtYu8UEUqyc4xsxmx2ZTyMp4U3
+</code></pre></div>
+
+<p>The terminal will show text of how much Sispop the address received. It will also show how many confirmations the transaction has received from the blockchain. For example:</p>
+<div class="codehilite"><pre><span></span><code>[wallet T6TZ2V]: check_tx_key d5fb415aad43f4e45bc72566d5ad4c8f12629db1f924d953efc2521c137a987f 5dfc4d677e2707317f306219b6aa445feaab4c652927237c012f7e72cb41bf0e T6TZ2VaG1p9PQkDgdVCYwnjoxYSU7ErXX56etGsqHLugAGqynFwBvP4dnN7wvYCcJfMa9LPgtYu8UEUqyc4xsxmx2ZTyMp4U3  
+T6TZ2VaG1p9PQkDgdVCYwnjoxYSU7ErXX56etGsqHLugAGqynFwBvP4dnN7wvYCcJfMa9LPgtYu8UEUqyc4xsxmx2ZTyMp4U3 received 10000.000000000 in txid &lt;d5fb415aad43f4e45bc72566d5ad4c8f12629db1f924d953efc2521c137a987f&gt;
+This transaction has 10 confirmations
+</code></pre></div>
+
+<h2 id="9-tx-notes">9 Tx Notes<a class="headerlink" href="#9-tx-notes" title="Permanent link">&para;</a></h2>
+<p>The <code>sispop-wallet-cli</code> allows you to add notes to specific txid’s, however this note does not get stored on the blockchain, rather it is stored on client side, on the device that generates the <code>tx_note</code>.</p>
+<h3 id="91-set-tx-note">9.1 Set tx note<a class="headerlink" href="#91-set-tx-note" title="Permanent link">&para;</a></h3>
+<p>To set a tx note we will need a the <code>&lt;txid&gt;</code> and the <code>&lt;message&gt;</code> you want to add to the txid. For instance, if you want to add a note to a txid that is connected to your wallet run the following command to show your transactions in/out with their <code>&lt;txid&gt;</code>’s:</p>
+<div class="codehilite"><pre><span></span><code>show_transfers
+</code></pre></div>
+
+<p>To set the note to the <code>&lt;txid&gt;</code> run the following command:</p>
+<div class="codehilite"><pre><span></span><code>set_tx_note &lt;txid&gt; [free text note]
+</code></pre></div>
+
+<p>Where <code>&lt;txid&gt;</code> is the transaction id associated to the transaction you are adding the <code>[free text note]</code> too. Your command will look similar to the following example:</p>
+<div class="codehilite"><pre><span></span><code>[wallet T6TmZX]: set_tx_note d5fb415aad43f4e45bc72566d5ad4c8f12629db1f924d953efc2521c137a987f This is a tx note example.
+</code></pre></div>
+
+<h3 id="92-view-tx-note">9.2 View tx note<a class="headerlink" href="#92-view-tx-note" title="Permanent link">&para;</a></h3>
+<p>To view a note connected to a txid run the following command:</p>
+<div class="codehilite"><pre><span></span><code>get_tx_note &lt;txid&gt;
+</code></pre></div>
+
+<p>Where <code>&lt;txid&gt;</code> is the transaction id that has the note connected to it. For example, if we run the command on the previous <code>&lt;txid&gt;</code> mentioned, the terminal will display the following text:</p>
+<div class="codehilite"><pre><span></span><code>[wallet T6TmZX]: get_tx_note d5fb415aad43f4e45bc72566d5ad4c8f12629db1f924d953efc2521c137a987f
+note found: This is a tx note example.
+</code></pre></div>
+
+<p>You can also view a tx note by running the <code>show_transfers</code> command, each transaction that has a note connected to it will display the text to the right of each transfer.</p>
+<h2 id="10-changing-wallet-password">10 Changing wallet password<a class="headerlink" href="#10-changing-wallet-password" title="Permanent link">&para;</a></h2>
+<p>Changing the wallet password is only client side(locally), and if the password is forgotten the wallet can always be restored with the mnemonic seed. If you know the password to the wallet and want to change it you can run the following command:</p>
+<div class="codehilite"><pre><span></span><code>password
+</code></pre></div>
+
+<p>Once the command has been run the terminal will prompt you for the current password and the new password twice. If entered correctly the terminal will go back to receiving inputs, otherwise the terminal will output an error such as <code>Passwords do not match! Please try again</code> or <code>Error: invalid password</code>.</p>
+<h2 id="11-encrypting-seed-phrase">11 Encrypting seed phrase<a class="headerlink" href="#11-encrypting-seed-phrase" title="Permanent link">&para;</a></h2>
+<p>Your seed passphrase is a 25 word phrase which is used to recover access to your wallet on a client or gui and is. The command <code>encrypted_seed</code> allows your to add an additional password, or encryption layer, to your 25 word mnemonic seed. Encrypting your seed will stop others from recovering access to your wallet if they somehow gain access to your 25 word mnemonic seed as they will not have the passphrase that decrypts them. This means, your passphrase should not be written or saved in the same location as your encrypted 25 word mnemonic seed phrase.</p>
+<p>To encrypt your seed run the following command:</p>
+<div class="codehilite"><pre><span></span><code>encrypted_seed
+</code></pre></div>
+
+<p>Initially the cli wallet will prompt you to enter your wallet password. Next it will request for your seed encryption passphrase, enter in your desired password/passphrase once, click enter, then type the passphrase in again.  </p>
+<p>The wallet will output your mnemonic seed which is a 25 word passphrase. It is generally best practice to write these 25 words down and store them somewhere safe and securely, write your passphrase down(which is the phrase you used to encrypt the 25 words) and store this somewhere else. Storing the 25 words with the passphrase in a file on your computer that is not encrypted is giving others easier access to your mnemonic seed.</p>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/sispop-dev" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M186.1 328.7c0 20.9-10.9 55.1-36.7 55.1s-36.7-34.2-36.7-55.1 10.9-55.1 36.7-55.1 36.7 34.2 36.7 55.1zM480 278.2c0 31.9-3.2 65.7-17.5 95-37.9 76.6-142.1 74.8-216.7 74.8-75.8 0-186.2 2.7-225.6-74.8-14.6-29-20.2-63.1-20.2-95 0-41.9 13.9-81.5 41.5-113.6-5.2-15.8-7.7-32.4-7.7-48.8 0-21.5 4.9-32.3 14.6-51.8 45.3 0 74.3 9 108.8 36 29-6.9 58.8-10 88.7-10 27 0 54.2 2.9 80.4 9.2 34-26.7 63-35.2 107.8-35.2 9.8 19.5 14.6 30.3 14.6 51.8 0 16.4-2.6 32.7-7.7 48.2 27.5 32.4 39 72.3 39 114.2zm-64.3 50.5c0-43.9-26.7-82.6-73.5-82.6-18.9 0-37 3.4-56 6-14.9 2.3-29.8 3.2-45.1 3.2-15.2 0-30.1-.9-45.1-3.2-18.7-2.6-37-6-56-6-46.8 0-73.5 38.7-73.5 82.6 0 87.8 80.4 101.3 150.4 101.3h48.2c70.3 0 150.6-13.4 150.6-101.3zm-82.6-55.1c-25.8 0-36.7 34.2-36.7 55.1s10.9 55.1 36.7 55.1 36.7-34.2 36.7-55.1-10.9-55.1-36.7-55.1z"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://twitter.com/sispop_" target="_blank" rel="noopener" title="twitter.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://t.me/Sispop" target="_blank" rel="noopener" title="t.me" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M248 8C111.033 8 0 119.033 0 256s111.033 248 248 248 248-111.033 248-248S384.967 8 248 8Zm114.952 168.66c-3.732 39.215-19.881 134.378-28.1 178.3-3.476 18.584-10.322 24.816-16.948 25.425-14.4 1.326-25.338-9.517-39.287-18.661-21.827-14.308-34.158-23.215-55.346-37.177-24.485-16.135-8.612-25 5.342-39.5 3.652-3.793 67.107-61.51 68.335-66.746.153-.655.3-3.1-1.154-4.384s-3.59-.849-5.135-.5q-3.283.746-104.608 69.142-14.845 10.194-26.894 9.934c-8.855-.191-25.888-5.006-38.551-9.123-15.531-5.048-27.875-7.717-26.8-16.291q.84-6.7 18.45-13.7 108.446-47.248 144.628-62.3c68.872-28.647 83.183-33.623 92.511-33.789 2.052-.034 6.639.474 9.61 2.885a10.452 10.452 0 0 1 3.53 6.716 43.765 43.765 0 0 1 .417 9.769Z"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://www.reddit.com/r/SispopProject" target="_blank" rel="noopener" title="www.reddit.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M201.5 305.5c-13.8 0-24.9-11.1-24.9-24.6 0-13.8 11.1-24.9 24.9-24.9 13.6 0 24.6 11.1 24.6 24.9 0 13.6-11.1 24.6-24.6 24.6zM504 256c0 137-111 248-248 248S8 393 8 256 119 8 256 8s248 111 248 248zm-132.3-41.2c-9.4 0-17.7 3.9-23.8 10-22.4-15.5-52.6-25.5-86.1-26.6l17.4-78.3 55.4 12.5c0 13.6 11.1 24.6 24.6 24.6 13.8 0 24.9-11.3 24.9-24.9s-11.1-24.9-24.9-24.9c-9.7 0-18 5.8-22.1 13.8l-61.2-13.6c-3-.8-6.1 1.4-6.9 4.4l-19.1 86.4c-33.2 1.4-63.1 11.3-85.5 26.8-6.1-6.4-14.7-10.2-24.1-10.2-34.9 0-46.3 46.9-14.4 62.8-1.1 5-1.7 10.2-1.7 15.5 0 52.6 59.2 95.2 132 95.2 73.1 0 132.3-42.6 132.3-95.2 0-5.3-.6-10.8-1.9-15.8 31.3-16 19.8-62.5-14.9-62.5zM302.8 331c-18.2 18.2-76.1 17.9-93.6 0-2.2-2.2-6.1-2.2-8.3 0-2.5 2.5-2.5 6.4 0 8.6 22.8 22.8 87.3 22.8 110.2 0 2.5-2.2 2.5-6.1 0-8.6-2.2-2.2-6.1-2.2-8.3 0zm7.7-75c-13.6 0-24.6 11.1-24.6 24.9 0 13.6 11.1 24.6 24.6 24.6 13.8 0 24.9-11.1 24.9-24.6 0-13.8-11-24.9-24.9-24.9z"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://www.youtube.com/sispopnetwork" target="_blank" rel="noopener" title="www.youtube.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M549.655 124.083c-6.281-23.65-24.787-42.276-48.284-48.597C458.781 64 288 64 288 64S117.22 64 74.629 75.486c-23.497 6.322-42.003 24.947-48.284 48.597-11.412 42.867-11.412 132.305-11.412 132.305s0 89.438 11.412 132.305c6.281 23.65 24.787 41.5 48.284 47.821C117.22 448 288 448 288 448s170.78 0 213.371-11.486c23.497-6.321 42.003-24.171 48.284-47.821 11.412-42.867 11.412-132.305 11.412-132.305s0-89.438-11.412-132.305zm-317.51 213.508V175.185l142.739 81.205-142.739 81.201z"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://www.facebook.com/SispopNetwork/" target="_blank" rel="noopener" title="www.facebook.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M504 256C504 119 393 8 256 8S8 119 8 256c0 123.78 90.69 226.38 209.25 245V327.69h-63V256h63v-54.64c0-62.15 37-96.48 93.67-96.48 27.14 0 55.52 4.84 55.52 4.84v61h-31.28c-30.8 0-40.41 19.12-40.41 38.73V256h68.78l-11 71.69h-57.78V501C413.31 482.38 504 379.78 504 256z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../../..", "features": [], "search": "../../../assets/javascripts/workers/search.f886a092.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.aecac24b.min.js"></script>
+      
+        <script src="../../../JAVASCRIPT/links.js"></script>
+      
+        <script src="../../../JAVASCRIPT/style.js"></script>
+      
+    
+  </body>
+</html>

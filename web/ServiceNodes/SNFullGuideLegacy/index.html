@@ -1,0 +1,4387 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="This document will tell you exactly how to set up and operate a Service Node for the Sispop Project. Installing and configuring manually.  This is more involved than the above, and requires manual configurating Sispop Privacy Software and updating of each component.">
+      
+      
+      
+        <link rel="canonical" href="https://docs.sispop.site/ServiceNodes/SNFullGuideLegacy/">
+      
+      
+        <link rel="prev" href="../GUIStakingGuide/">
+      
+      
+        <link rel="next" href="../StorageServerGuide-Testnet/">
+      
+      
+      <link rel="icon" href="../../Sispop_favicon32x32.png">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.4.6">
+    
+    
+      
+        <title>Sispop Documentation | Sispop Service Node Legacy Guide - Sispop Docs</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.35e1ed30.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.356b1318.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+    
+    
+      <link rel="stylesheet" href="../../CSS/style.css">
+    
+      <link rel="stylesheet" href="../../CSS/font.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="green">
+  
+    
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#full-guide-on-service-nodes" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Sispop Docs" class="md-header__button md-logo" aria-label="Sispop Docs" data-md-component="logo">
+      
+  <img src="../../logo.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Sispop Docs
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Sispop Documentation | Sispop Service Node Legacy Guide
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/sispop-dev/sispop-docs" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    sispop-docs
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Sispop Docs" class="md-nav__button md-logo" aria-label="Sispop Docs" data-md-component="logo">
+      
+  <img src="../../logo.svg" alt="logo">
+
+    </a>
+    Sispop Docs
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/sispop-dev/sispop-docs" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    sispop-docs
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Introduction/SispopNetwork/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Introduction
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Introduction/GettingStarted/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Getting Started
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../FAQ/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    FAQ
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Wallets
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            Wallets
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Wallets/WalletsOverview/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Overview
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Wallets/WhatWalletToUse/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Which wallet should I use?
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_3" id="__nav_5_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Addresses
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_3">
+            <span class="md-nav__icon md-icon"></span>
+            Addresses
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Wallets/Addresses/MainAddress/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Main Address
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Wallets/Addresses/SubAddress/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Sub Address
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Wallets/Addresses/IntegratedAddress/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Integrated Address
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Wallets/Multisignature/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Multsignature
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_5" id="__nav_5_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Guides
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_5">
+            <span class="md-nav__icon md-icon"></span>
+            Guides
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Wallets/GuiWallet/sispop-electron-guide/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Electron Gui Setup
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../GUIStakingGuide/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Gui Staking Guide
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Wallets/MobileWallet/RestoreMobileWalletGuide/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Mobile Wallet Restore
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Wallets/CliWallet/sispop-wallet-cliMacSetup/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    CLI Mac Setup
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Wallets/CliWallet/WalletCommands/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    CLI Wallet Commands
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Wallets/CliWallet/WalletRestoreSeed/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    CLI Restoring Wallet from Seed
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Wallets/CliWallet/WalletRestoreKeys/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    CLI Restoring Wallet from Keys
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_5_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_5_8" id="__nav_5_5_8_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Multisig
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_5_5_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_5_8">
+            <span class="md-nav__icon md-icon"></span>
+            Multisig
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Wallets/CliWallet/2of2Multisig/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2/2 Multisig
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Wallets/CliWallet/2of3Multisig/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2/3 Multisig
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Wallets/CliWallet/MofNMultisig/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    M/N Multsig
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Service Nodes
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            Service Nodes
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../SNOverview/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Overview
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../StakingRequirement/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Staking Requirement
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DeregistrationRules/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Deregistration Rules
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_6_4" id="__nav_6_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Guides
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_6_4">
+            <span class="md-nav__icon md-icon"></span>
+            Guides
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DebianPackageGuide/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Service Node Setup Guide
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../LauncherToDeb/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Sispop-Launcher to Debian Update Guide
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Developer/SNRPCGuide/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Service Node RPC Guide
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../GUIStakingGuide/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Gui Staking Guide
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Service Node Legacy Guide
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Service Node Legacy Guide
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#summary-of-sispop-service-node-requirements" class="md-nav__link">
+    Summary of Sispop Service Node Requirements
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#table-of-contents" class="md-nav__link">
+    Table of Contents
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    Overview
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#new-user-guide" class="md-nav__link">
+    New User Guide
+  </a>
+  
+    <nav class="md-nav" aria-label="New User Guide">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#step-1-get-a-server" class="md-nav__link">
+    Step 1 - Get a Server
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-2-prepare-your-server" class="md-nav__link">
+    Step 2 - Prepare your Server
+  </a>
+  
+    <nav class="md-nav" aria-label="Step 2 - Prepare your Server">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#create-a-non-root-user" class="md-nav__link">
+    Create a non-root User
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hot-tips-for-using-the-console" class="md-nav__link">
+    Hot Tips for using the Console
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#server-preparation-continued" class="md-nav__link">
+    Server Preparation Continued
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-3-download-the-sispop-binaries" class="md-nav__link">
+    Step 3 - Download the Sispop Binaries
+  </a>
+  
+    <nav class="md-nav" aria-label="Step 3 - Download the Sispop Binaries">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-sispopd-binaries" class="md-nav__link">
+    3.1 - Sispopd Binaries
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-storage-server-binaries" class="md-nav__link">
+    3.2 - Storage Server Binaries
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33-untar-binaries" class="md-nav__link">
+    3.3 - Untar Binaries
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#34-create-symlink" class="md-nav__link">
+    3.4 - Create Symlink
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-4-service-node-as-a-service" class="md-nav__link">
+    Step 4 - Service Node as a Service
+  </a>
+  
+    <nav class="md-nav" aria-label="Step 4 - Service Node as a Service">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-sispopdservice-file" class="md-nav__link">
+    4.1 sispopd.service file
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-sispop-ssservice-file" class="md-nav__link">
+    4.2 sispop-ss.service file
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#43-enabling-service-files" class="md-nav__link">
+    4.3 Enabling Service Files
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-5-getopen-a-wallet" class="md-nav__link">
+    Step 5 - Get/Open A Wallet
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-6-service-node-registration" class="md-nav__link">
+    Step 6 - Service Node Registration
+  </a>
+  
+    <nav class="md-nav" aria-label="Step 6 - Service Node Registration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#61-individual-staking" class="md-nav__link">
+    6.1 - Individual Staking
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#62-pool-staking" class="md-nav__link">
+    6.2 - Pool Staking
+  </a>
+  
+    <nav class="md-nav" aria-label="6.2 - Pool Staking">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#minimum-contribution-rules" class="md-nav__link">
+    Minimum Contribution Rules
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#621-operator" class="md-nav__link">
+    6.2.1 - Operator
+  </a>
+  
+    <nav class="md-nav" aria-label="6.2.1 - Operator">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#reserved-pool" class="md-nav__link">
+    Reserved Pool
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#open-pool" class="md-nav__link">
+    Open Pool
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#622-pool-contributor" class="md-nav__link">
+    6.2.2 - Pool Contributor
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-7-service-node-check" class="md-nav__link">
+    Step 7 - Service Node Check
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-8-unlock-stake" class="md-nav__link">
+    Step 8 - Unlock Stake
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#optional" class="md-nav__link">
+    Optional
+  </a>
+  
+    <nav class="md-nav" aria-label="Optional">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#see-locked-stake-amount-and-duration" class="md-nav__link">
+    See Locked Stake Amount and Duration
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#express-setup-guide" class="md-nav__link">
+    Express Setup Guide
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conclusion" class="md-nav__link">
+    Conclusion
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../StorageServerGuide-Testnet/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Service Node TESTNET Guide
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_6_5" id="__nav_6_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Troubleshooting
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_5">
+            <span class="md-nav__icon md-icon"></span>
+            Troubleshooting
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../OpenPort30000.md" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Port 30000 Not Open
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Sispopnet
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            Sispopnet
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Sispopnet/SispopnetOverview/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Overview
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Sispopnet/Guides/PublicTestingGuide/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Public Testing Overview
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Sispopnet/SNApps/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    SNApps
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Sispopnet/LLARP/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    LLARP
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_5" id="__nav_7_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Guides
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_5">
+            <span class="md-nav__icon md-icon"></span>
+            Guides
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Sispopnet/Guides/SispopnetGuiGuide/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Linux GUI Guide
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Sispopnet/Guides/sispopnet-mac-guide/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    macOS Gui Guide
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Sispopnet/Guides/ExitProvider/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Exit Provider Guide
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Sispopnet/Guides/ReverseSSHGuide/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Anonymous Reverse SSH Guide
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Sispopnet/Guides/sispopnet-linux-guide/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Linux Command-line Guide
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Sispopnet/Guides/Install/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Linux - Build-It-Yourself
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Sispopnet/Guides/AccessingSNApps/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Accessing SNApps
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Sispopnet/Guides/SispopnetIRC/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Joining a Sispopnet IRC Chat
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Sispopnet/Guides/HostingSNApps/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Hosting SNApps
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Sispopnet/Guides/SispopnetConfig/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Sispopnet config files
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Sispopnet/Guides/SispopnetRouter/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Set up a Sispopnet Router
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Sispopnet/Guides/ExitNode/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Exit Nodes
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Session
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            Session
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SispopServices/Messenger/Session/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Overview
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SispopServices/Messenger/SispopNameSystem/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Sispop Name System
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SispopServices/Messenger/threat_model/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Threat Models
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SispopServices/Messenger/infrastructure/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Infrastructure
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SispopServices/Messenger/message_routing/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Message Routing
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SispopServices/Messenger/group_chats/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Group Chats
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SispopServices/Messenger/testing/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Testing
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SispopServices/Messenger/multidevice/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Multi-Device
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SispopServices/Messenger/client_side_protection/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Client Side Protection
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SispopServices/Messenger/attachments/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Attachments
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8_11" >
+        
+          
+          <label class="md-nav__link" for="__nav_8_11" id="__nav_8_11_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Guides
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_8_11_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8_11">
+            <span class="md-nav__icon md-icon"></span>
+            Guides
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SispopServices/Messenger/HowToRegisterSessionNames/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Register Session/Wallet names
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SispopServices/Messenger/multi_device_setup/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Multi-Device Setup
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SispopServices/Messenger/opengroup_setup/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    OpenGroup Setup
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SispopServices/Messenger/JoinOpenGroupMobile/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Join Open Group on Mobile
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SispopServices/Messenger/JoinOpenGroupDesktop/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Join Open Group on Desktop
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Blink
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            Blink
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SispopServices/Blink/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Blink
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_10" >
+        
+          
+          <label class="md-nav__link" for="__nav_10" id="__nav_10_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Checkpointing
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_10">
+            <span class="md-nav__icon md-icon"></span>
+            Checkpointing
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Advanced/CheckpointingLip3/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Checkpointing LIP
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Advanced/CheckpointingUpdate/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Safely Receiving Sispop
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_11" >
+        
+          
+          <label class="md-nav__link" for="__nav_11" id="__nav_11_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Advanced
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_11_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_11">
+            <span class="md-nav__icon md-icon"></span>
+            Advanced
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_11_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_11_1" id="__nav_11_1_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Developer
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_11_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_11_1">
+            <span class="md-nav__icon md-icon"></span>
+            Developer
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Developer/SNRPCGuide/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Service Node RPC Guide
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Developer/DaemonRPCBeta/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Daemon RPC Guide - Beta
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Developer/WalletRPCBeta/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Wallet RPC Guide - Beta
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Developer/FAQ/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Developer FAQ
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_11_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_11_2" id="__nav_11_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Sispop Services
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_11_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_11_2">
+            <span class="md-nav__icon md-icon"></span>
+            Sispop Services
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SispopServices/SispopServicesOverview/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Overview
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SispopServices/Blink/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Blink
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_11_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_11_3" id="__nav_11_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Attack Prevention
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_11_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_11_3">
+            <span class="md-nav__icon md-icon"></span>
+            Attack Prevention
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Advanced/DenialofServiceAttacks/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Denial of Service Attacks
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Advanced/IPandPacketBlocking/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    IP and Packet Blocking
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Advanced/SwarmFlagging/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Swarm Flagging
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_11_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_11_4" id="__nav_11_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Contributing
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_11_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_11_4">
+            <span class="md-nav__icon md-icon"></span>
+            Contributing
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Contributing/HowToContributeToSispopDocs/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    How to Contribute to SispopDocs
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Contributing/VULNERABILITY_RESPONSE_SISPOP/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Vulnerability Response
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Contributing/Issue_Template/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Github Issue Template Example
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_11_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_11_5" id="__nav_11_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Governance
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_11_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_11_5">
+            <span class="md-nav__icon md-icon"></span>
+            Governance
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Governance/Governance/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Overview
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Governance/TheSispopFoundation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    The Sispop Foundation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Governance/SispopFundingSystem/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Sispop Funding System
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Advanced/Cryptoeconomics/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Cryptoeconomics
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Advanced/SybilResistance/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Sybil Resistance
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Advanced/DynamicBlockSize/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Dynamic Block Size
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Advanced/CryptoNoteElements/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    CryptoNote Elements
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Advanced/sispopd/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    sispopd
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_11_11" >
+        
+          
+          <label class="md-nav__link" for="__nav_11_11" id="__nav_11_11_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Guides
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_11_11_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_11_11">
+            <span class="md-nav__icon md-icon"></span>
+            Guides
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Advanced/UsingTor/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Using Tor
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Advanced/Debugging/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Debugging
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Advanced/AcceptingSispop/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Accepting Sispop for Merchants and Exchanges
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#summary-of-sispop-service-node-requirements" class="md-nav__link">
+    Summary of Sispop Service Node Requirements
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#table-of-contents" class="md-nav__link">
+    Table of Contents
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    Overview
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#new-user-guide" class="md-nav__link">
+    New User Guide
+  </a>
+  
+    <nav class="md-nav" aria-label="New User Guide">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#step-1-get-a-server" class="md-nav__link">
+    Step 1 - Get a Server
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-2-prepare-your-server" class="md-nav__link">
+    Step 2 - Prepare your Server
+  </a>
+  
+    <nav class="md-nav" aria-label="Step 2 - Prepare your Server">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#create-a-non-root-user" class="md-nav__link">
+    Create a non-root User
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hot-tips-for-using-the-console" class="md-nav__link">
+    Hot Tips for using the Console
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#server-preparation-continued" class="md-nav__link">
+    Server Preparation Continued
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-3-download-the-sispop-binaries" class="md-nav__link">
+    Step 3 - Download the Sispop Binaries
+  </a>
+  
+    <nav class="md-nav" aria-label="Step 3 - Download the Sispop Binaries">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-sispopd-binaries" class="md-nav__link">
+    3.1 - Sispopd Binaries
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-storage-server-binaries" class="md-nav__link">
+    3.2 - Storage Server Binaries
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33-untar-binaries" class="md-nav__link">
+    3.3 - Untar Binaries
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#34-create-symlink" class="md-nav__link">
+    3.4 - Create Symlink
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-4-service-node-as-a-service" class="md-nav__link">
+    Step 4 - Service Node as a Service
+  </a>
+  
+    <nav class="md-nav" aria-label="Step 4 - Service Node as a Service">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-sispopdservice-file" class="md-nav__link">
+    4.1 sispopd.service file
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-sispop-ssservice-file" class="md-nav__link">
+    4.2 sispop-ss.service file
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#43-enabling-service-files" class="md-nav__link">
+    4.3 Enabling Service Files
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-5-getopen-a-wallet" class="md-nav__link">
+    Step 5 - Get/Open A Wallet
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-6-service-node-registration" class="md-nav__link">
+    Step 6 - Service Node Registration
+  </a>
+  
+    <nav class="md-nav" aria-label="Step 6 - Service Node Registration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#61-individual-staking" class="md-nav__link">
+    6.1 - Individual Staking
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#62-pool-staking" class="md-nav__link">
+    6.2 - Pool Staking
+  </a>
+  
+    <nav class="md-nav" aria-label="6.2 - Pool Staking">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#minimum-contribution-rules" class="md-nav__link">
+    Minimum Contribution Rules
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#621-operator" class="md-nav__link">
+    6.2.1 - Operator
+  </a>
+  
+    <nav class="md-nav" aria-label="6.2.1 - Operator">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#reserved-pool" class="md-nav__link">
+    Reserved Pool
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#open-pool" class="md-nav__link">
+    Open Pool
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#622-pool-contributor" class="md-nav__link">
+    6.2.2 - Pool Contributor
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-7-service-node-check" class="md-nav__link">
+    Step 7 - Service Node Check
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-8-unlock-stake" class="md-nav__link">
+    Step 8 - Unlock Stake
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#optional" class="md-nav__link">
+    Optional
+  </a>
+  
+    <nav class="md-nav" aria-label="Optional">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#see-locked-stake-amount-and-duration" class="md-nav__link">
+    See Locked Stake Amount and Duration
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#express-setup-guide" class="md-nav__link">
+    Express Setup Guide
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conclusion" class="md-nav__link">
+    Conclusion
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+<h1 id="full-guide-on-service-nodes">Full Guide on Service Nodes<a class="headerlink" href="#full-guide-on-service-nodes" title="Permanent link">&para;</a></h1>
+<p>This document will tell you exactly how to set up and operate a Service Node for the Sispop Project. This document was written with non-developers in mind, so people new to linux or command line operations should be able to follow along without any trouble.</p>
+<p>If you feel confident around servers and the CLI, then skip to the <a href="#express-setup-guide">Express Setup Guide</a></p>
+<p>You can of course run the Sispop software on any operating system that you can get it to build on, but for the purposes of this document, the instructions apply to running a Service Node on a remote Ubuntu 16.04 server. If that isn’t what you want to do, syntax and server set up will of course differ according to whatever OS you choose to run your Service Node from.</p>
+<h3 id="summary-of-sispop-service-node-requirements">Summary of Sispop Service Node Requirements<a class="headerlink" href="#summary-of-sispop-service-node-requirements" title="Permanent link">&para;</a></h3>
+<p>Full summary of Sispop Service Node Requirements. This may change depending on Service Node functionality, so you should check here regularly, or follow our <a href="https://t.me/Sispop">Telegram</a>/<a href="https://discord.gg/sqZCybf2ZZ">Discord</a> announcements channel.</p>
+<table>
+<thead>
+<tr>
+<th>Spec</th>
+<th>Note</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Latest Binary</td>
+<td><a href="https://github.com/sispop-dev/sispop/releases/latest">Smooth Water</a></td>
+</tr>
+<tr>
+<td>Software</td>
+<td>Ubuntu 18.04, Ubuntu 20.04</td>
+</tr>
+<tr>
+<td>Storage</td>
+<td>30-50gb</td>
+</tr>
+<tr>
+<td>Ram</td>
+<td>2-4 gb</td>
+</tr>
+</tbody>
+</table>
+<h2 id="table-of-contents">Table of Contents<a class="headerlink" href="#table-of-contents" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="#Overview">Overview of Service Nodes</a></li>
+<li><a href="#new-user-guide">New User Guide</a><ul>
+<li>Step 1 <a href="#step-1-get-a-server">Server</a></li>
+<li>Step 2 <a href="#step-2-prepare-your-server">Server Prep</a></li>
+<li>Step 3 <a href="#step-3-download-the-sispop-binaries">Download Binaries</a></li>
+<li>Step 4 <a href="/#step-4-service-node-as-a-service">Service Node as a Service</a></li>
+<li>Step 5 <a href="#step-5-getopen-a-wallet">Open a Sispop Wallet</a></li>
+<li>Step 6 <a href="#step-6-service-node-registration">Register Node</a></li>
+<li>Step 7 <a href="#step-7-service-node-check">Check Registration</a></li>
+</ul>
+</li>
+<li><a href="#express-setup-guide">Express Setup Guide</a></li>
+</ul>
+<h2 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link">&para;</a></h2>
+<p>To understand what a <a href="../SNOverview/">Service Node</a> is, you can refer to the <a href="https://sispop.site/whitepaper">whitepaper</a> to get an in depth understanding. For now, all you need to know is that:</p>
+<ul>
+<li>
+<p>Service Nodes are full nodes on the Sispop network</p>
+</li>
+<li>
+<p>Full nodes become Service Nodes when the owner <a href="../StakingRequirement/">locks the required amount of Sispop</a> and submits a registration transaction.</p>
+</li>
+<li>
+<p>Once accepted by the network, the Service Node is eligible to win block rewards.</p>
+</li>
+<li>
+<p>Multiple participants can be involved in one Service Node and can have the reward automatically distributed</p>
+</li>
+</ul>
+<p>It is also worth noting that Service Nodes are quite basic at the moment, and operators will need to stay up to date with new updates to keep in line with software and hardware requirements. Once all of the updates are out, Service Nodes will also:</p>
+<ul>
+<li>
+<p>Route end user’s internet traffic, either as an exit node or relay.</p>
+</li>
+<li>
+<p>Receive, store and forward encrypted user messages.</p>
+</li>
+<li>
+<p>Monitor other Service Nodes and vote on their performance.</p>
+</li>
+<li>
+<p>Be called into quorums which give them authority over instant transactions (<a href="../../SispopServices/Blink/">Blink</a>).</p>
+</li>
+<li>
+<p>Act as remote nodes for users.</p>
+</li>
+</ul>
+<p>Once these features come out, Service Node operation will require better servers, particularly when it comes to bandwidth. For the purposes of this guide, however, we will only consider the current requirements.</p>
+<h2 id="new-user-guide">New User Guide<a class="headerlink" href="#new-user-guide" title="Permanent link">&para;</a></h2>
+<p>This section of this guide is for new users to servers and the CLI interface. </p>
+<h3 id="step-1-get-a-server">Step 1 - Get a Server<a class="headerlink" href="#step-1-get-a-server" title="Permanent link">&para;</a></h3>
+<p>Righto! Let’s get started. Choosing where to set up a Service Node is the biggest choice you will make when running a Service Node. There are a number of things to consider. Because you will be locking up funds for 30 days (2 days for testnet) at a time, you will want to ensure that your server has:</p>
+<ul>
+<li>
+<p>A stable, relatively fast connection to be able to respond to ping requests to avoid being booted off the network.</p>
+</li>
+<li>
+<p>We recommend 2GB of RAM to cope with running the software reliably (<em>Note: This requirement may be much greater once services are live</em>). 1GB is fine for testing.</p>
+</li>
+<li>
+<p>At Least a 20GB SSD or Hard disk drive, this will be used to store the blockchain (<em>Note: to future proof yourself against blockchain growth and message storage we recommend a 30 - 40 GB drive</em>).</p>
+</li>
+<li>
+<p>A stable power supply. If your server goes down during the staking period, you may get kicked off the network, and not receive rewards while your funds are still locked for the remainder of the staking period.</p>
+</li>
+</ul>
+<p>For most users, we assume that your home internet connection is relatively slow (&lt; 4MB/s down and up) and probably lacks support for external connections. If this is the case, you will probably not want to run a Service Node from your home in the long term, as this could cost you if and when you get booted off. Since we’re just testing at the moment, you could run it from home anyway, but for this guide we’ll avoid it.</p>
+<p>Typically, the easiest and cheapest way to host a server outside of your home is to use a Virtual Private Server (VPS). There are thousands of options when it comes to VPS providers, but for now, just about any one will do. In the future, selection will be made more difficult because most providers will not allow exit node traffic, so we have compiled a list of exit node friendly providers to choose from if you want to stay with your provider for more than a few months.</p>
+<table>
+<thead>
+<tr>
+<th>Hosting Provider</th>
+<th>Product Name</th>
+<th>Cost Per Month $USD</th>
+<th>Bandwidth Provided</th>
+<th>Exit Friendliness Rating</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Netcup</td>
+<td>VPS 1000 G8</td>
+<td>10.50</td>
+<td>30 - 35 MiB’s</td>
+<td>5 / 10</td>
+</tr>
+<tr>
+<td>Online.net</td>
+<td>Start-2-S-SSD</td>
+<td>13.99</td>
+<td>15 - 17 MiB’s</td>
+<td>9 / 10</td>
+</tr>
+<tr>
+<td>Scaleway</td>
+<td>START1-M</td>
+<td>9.33</td>
+<td>20 - 25 MiB’s</td>
+<td>7 / 10</td>
+</tr>
+<tr>
+<td>OVH</td>
+<td>VPS SSD 2</td>
+<td>7.61</td>
+<td>9 - 1 MiB’s</td>
+<td>9 / 10</td>
+</tr>
+<tr>
+<td>Leaseweb</td>
+<td>Virtual Server XL</td>
+<td>34.45</td>
+<td>30 - 35 MiB’s</td>
+<td>5 / 10</td>
+</tr>
+<tr>
+<td>Digital Ocean</td>
+<td>2 GB, 2 vCPUs</td>
+<td>15</td>
+<td>9 - 11 MiB’s</td>
+<td>8 / 10</td>
+</tr>
+<tr>
+<td>Feral Hosting</td>
+<td>Neon Capability</td>
+<td>19.68</td>
+<td>9 - 11 MiB’s</td>
+<td>9 / 10</td>
+</tr>
+<tr>
+<td>Trabia</td>
+<td>VDS-8G</td>
+<td>38.54</td>
+<td>9 - 11 MiB’s</td>
+<td>8 / 10</td>
+</tr>
+<tr>
+<td>Hetzner</td>
+<td>EX41-SSD (30 TB)</td>
+<td>39.71</td>
+<td>40 - 80 MiB’s</td>
+<td>4 / 10</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>Note: We do not officially endorse any of these providers, this list is simply illustrative of some of the options currently available*</p>
+</blockquote>
+<p>Try not to pick the first one off the list. Do some digging and see which one looks the best to you, what your budget is, and what the latency is like for you based on the server location that you choose.</p>
+<p>When selecting your VPS’ operating system, choose Ubuntu 16.04 64 bit or Ubuntu 18.04 64 bit if you want to follow this guide. If you feel more confident or wish to run your server on another distribution or operating system, the Sispop commands in this guide will still apply.</p>
+<h3 id="step-2-prepare-your-server">Step 2 - Prepare your Server<a class="headerlink" href="#step-2-prepare-your-server" title="Permanent link">&para;</a></h3>
+<p>Every provider has a slightly different way of issuing you access to your new VPS. Most will send an email with the IP address, root username, and a root password of the VPS.</p>
+<p>To access your server, you will need a SSH client for your operating system. Because we’re on Windows today, we’ll download PuTTY, Mac users can also use PuTTY. If you’re a Linux user, you probably don’t want us telling you where to get a SSH client from.</p>
+<p>To connect to our VPS we will need to paste the IP address into the SSH client’s “Host Name (or IP address)” input box and click the “Open” button. The Port number can usually just be left as <code>22</code>.</p>
+<p><center><img alt="Putty window" src="../../assets/snode1.JPG" /></center></p>
+<p>A terminal window will now appear prompting for your log-in details, username(root) and password, which were provided by your VPS provider. When entering your password, nothing will visually appear in the terminal. This is normal. Hit enter when it’s typed or pasted, and you should be logged in to your VPS.</p>
+<h4 id="create-a-non-root-user">Create a non-root User<a class="headerlink" href="#create-a-non-root-user" title="Permanent link">&para;</a></h4>
+<p>Best practice when running a public server is to not run your software as the root user.  Although
+it is possible to do everything as root, it is strongly recommended that you create a non-root user
+on our VPS by running the following command:</p>
+<div class="codehilite"><pre><span></span><code>adduser &lt;username&gt;
+</code></pre></div>
+
+<p>Replacing <code>&lt;username&gt;</code> with a name you will log-in with. For this user-guide we will use <code>snode</code> as our username.</p>
+<div class="codehilite"><pre><span></span><code>adduser snode
+</code></pre></div>
+
+<p>The terminal will prompt you for a new password for our newly created user. Use a secure password that is different password from the root password.</p>
+<p>Once the password has been set, the terminal will prompt for a few details about the individual running the user. You can just hit enter through each of the inputs as the details are not important for the purposes of running a Service Node.</p>
+<p>Once that’s done, run the following two commands to give our new account admin privileges and to change to such account.</p>
+<div class="codehilite"><pre><span></span><code>usermod -aG sudo snode
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code>su - snode
+</code></pre></div>
+
+<p>Before we proceed further, it is advised to close your terminal and reopen PuTTY to set up a saved session with our snode user. Your SSH client will have a load and save session function. For PuTTY we will need to type in our VPS IP address again, on the same screen type snode under “Saved Session”. Click on “Data” under the drop-down menu “Connection”, and type in snode (or your username defined before) into the input box “Auto-login username”. Go back to your session screen, where we entered the IP address, and click “Save”. You can load this session whenever you want to check on your Service Node.</p>
+<h4 id="hot-tips-for-using-the-console">Hot Tips for using the Console<a class="headerlink" href="#hot-tips-for-using-the-console" title="Permanent link">&para;</a></h4>
+<p>Consoles don't work like the rest of your computer. Here are some basic tips for navigating your way around the command line!</p>
+<ul>
+<li>
+<p>Don't try copying something by using the usual Ctrl + C hotkey! If you want to copy something, do so by highlighting text and then right clicking it. Pasting works by right clicking a blank area in the console.</p>
+</li>
+<li>
+<p>If you want to kill a process or stop something from running, press Ctrl + C. (This is why you shouldn't try copying something with this hotkey.)</p>
+</li>
+<li>
+<p>You can always check the directory you are in by typing <code>pwd</code> and list its contents by typing <code>ls</code>.</p>
+</li>
+<li>
+<p>You can always return to your home directory by typing <code>cd</code>.</p>
+</li>
+<li>
+<p>You can move into a given directory by typing <code>cd &lt;name&gt;</code> or move back up one level by typing <code>cd ..</code>.</p>
+</li>
+<li>
+<p>PuTTY allows you to easily duplicate or restart a session by right clicking the top of the window. Handy if you’re trying to do a few things at once.</p>
+</li>
+</ul>
+<p>Once we have logged in correctly to the VPS for the first time, the VPS may be configured to prompt for a new password for the root account. The terminal will require you to enter the new password twice before we can start running commands.  If you aren't prompted for a new <code>root</code> password but want to change it anyway, type <code>sudo passwd</code>.  Choose something very secure!</p>
+<h4 id="server-preparation-continued">Server Preparation Continued<a class="headerlink" href="#server-preparation-continued" title="Permanent link">&para;</a></h4>
+<p>We should update our package lists, the below command downloads the package lists from the repositories and "updates" them to get information on the newest versions of packages and their dependencies. It will do this for all repositories and PPAs.</p>
+<div class="codehilite"><pre><span></span><code>sudo apt update -y
+</code></pre></div>
+
+<p>You will notice a bunch of package lists were downloaded, once this is complete run the below command to fetch new versions of any packages we currently have installed on the system.</p>
+<div class="codehilite"><pre><span></span><code>sudo apt upgrade -y
+</code></pre></div>
+
+<p>You will be prompted to authorise the use of disk space, type <code>y</code> and enter to authorise.</p>
+<p>If you are prompted during the upgrade that a new version of any file is available then click the up and down arrows until you are hovering over <code>install the package maintainer’s version</code> and click enter.</p>
+<p><center><img alt="Terminal window" src="../../assets/snode2.JPG" /></center></p>
+<p>Alright, good to go. Our server is now set up, up to date, and is not running as root. On to the fun part!</p>
+<h3 id="step-3-download-the-sispop-binaries">Step 3 - Download the Sispop Binaries<a class="headerlink" href="#step-3-download-the-sispop-binaries" title="Permanent link">&para;</a></h3>
+<p>In order to download and extract the Linux binaries, we need to make sure a couple tools are installed:</p>
+<div class="codehilite"><pre><span></span><code>sudo apt install wget unzip -y
+</code></pre></div>
+
+<p>Now download the Linux binaries by running the following command:</p>
+<div class="codehilite"><pre><span></span><code>wget &lt;link&gt;
+</code></pre></div>
+
+<p>Where <code>&lt;link&gt;</code> is the download link of the latest linux release. To find the link go to <a href="https://github.com/sispop-dev/sispop/releases/latest">https://github.com/sispop-dev/sispop/releases/latest</a>, right click the latest linux release and click <code>Copy Link Location</code>.</p>
+<h4 id="31-sispopd-binaries">3.1 - Sispopd Binaries<a class="headerlink" href="#31-sispopd-binaries" title="Permanent link">&para;</a></h4>
+<p>To download the sispopd binaries run the following command:</p>
+<div class="codehilite"><pre><span></span><code>wget https://github.com/sispop-dev/sispop/releases/download/v10.0.1/sispop-ubuntu.tar.gz
+</code></pre></div>
+
+<blockquote>
+<p>With the latest binary version number from <a href="https://github.com/sispop-dev/sispop/releases/latest">https://github.com/sispop-dev/sispop/releases/latest</a>.</p>
+</blockquote>
+<h4 id="32-storage-server-binaries">3.2 - Storage Server Binaries<a class="headerlink" href="#32-storage-server-binaries" title="Permanent link">&para;</a></h4>
+<p>To download the sispop storage server binaries run the following command:</p>
+<div class="codehilite"><pre><span></span><code>wget https://github.com/sispop-dev/sispop/releases/download/v10.0.1/storage-ubuntu-20.tar.gz
+</code></pre></div>
+
+<blockquote>
+<p>With the latest binary version number from <a href="https://github.com/sispop-dev/storage/releases">https://github.com/sispop-dev/sispop-storage-server/releases</a>.</p>
+</blockquote>
+<h4 id="33-untar-binaries">3.3 - Untar Binaries<a class="headerlink" href="#33-untar-binaries" title="Permanent link">&para;</a></h4>
+<p>To untar the downloaded files run the following command:</p>
+<div class="codehilite"><pre><span></span><code>tar -xvf sispop-ubuntu.tar.gz
+tar -xvf storage-ubuntu-20.tar.gz
+</code></pre></div>
+
+<h4 id="34-create-symlink">3.4 - Create Symlink<a class="headerlink" href="#34-create-symlink" title="Permanent link">&para;</a></h4>
+<p>We now want to create a "symlink" to the extracted <code>sispop-ubuntu</code> folder:</p>
+<div class="codehilite"><pre><span></span><code>ln -snf sispop-ubuntu sispop
+</code></pre></div>
+
+<p>and a "symlink" to the extracted <code>storage-ubuntu-20</code> folder:</p>
+<div class="codehilite"><pre><span></span><code>ln -snf storage-ubuntu-20 sispop-ss
+</code></pre></div>
+
+<p>This creates a virtual folder that points to the binary folders. This isn't strictly necessary, but will help with upgrades in the future: when you want to upgrade you can just repeat everything in this step again with the new binaries.</p>
+<p>Excellent! We now have all of the necessary files to get this show on the road!</p>
+<blockquote>
+<p><em>NOTE: If you’re nervous about trusting the binaries or the download link, you should build it from source yourself. Instructions for that can be found in the README of <a href="https://github.com/sispop-dev/sispop">https://github.com/sispop-dev/sispop</a></em></p>
+</blockquote>
+<h3 id="step-4-service-node-as-a-service">Step 4 - Service Node as a Service<a class="headerlink" href="#step-4-service-node-as-a-service" title="Permanent link">&para;</a></h3>
+<p>At this point you can run the Sispop binaries directly in your terminal, but this is not a viable approach to running it as a service node: when you close PuTTY the program running inside it will <em>also</em> shut down, which is no good for a service node.</p>
+<p>Instead we will configure the Sispop daemons as a system service which makes it automatically start up if the server reboots, and restarts it automatically if it crashes for some reason.</p>
+<h4 id="41-sispopdservice-file">4.1 sispopd.service file<a class="headerlink" href="#41-sispopdservice-file" title="Permanent link">&para;</a></h4>
+<ol>
+<li>Create the sispopd.service file:
+<pre><code>sudo nano /etc/systemd/system/sispopd.service</code></pre>
+</li>
+<li>Copy the text below and paste it into your new file:</li>
+</ol>
+<pre><code>[Unit]
+Description=sispopd service node
+After=network-online.target
+
+[Service]
+Type=simple
+User=snode
+ExecStart=/home/snode/sispop/sispopd --non-interactive --service-node --service-node-public-ip SERVERIP --storage-server-port 23023
+Restart=always
+RestartSec=30s
+
+[Install]
+WantedBy=multi-user.target
+</code></pre>
+<blockquote>
+<p>Replacing <code>SERVERIP</code> in the line <code>ExecStart=</code> with your servers IP.</p>
+<p>To find your SERVERIP run the command <code>curl ifconfig.me</code></p>
+</blockquote>
+<ol start="3">
+<li>If you chose a username other than <code>snode</code> then change <code>snode</code> in the <code>User=</code> and <code>ExecStart=</code> lines to the alternative username.</li>
+</ol>
+
+<blockquote>
+<p>(If you want to run a testnet service node, append <code>--testnet</code> to the end of the ExecStart line.  Alternatively, if you want to be able to run both a testnet and mainnet service node simultaneously
+you can use two service files: <code>sispopd.service</code> and <code>sispopd-testnet.service</code> and add <code>--testnet</code> to the <code>ExecStart=</code> line in the latter.  You would then use <code>sispopd-testnet.service</code> instead of
+<code>sispopd.service</code> in the commands below when you want to control the testnet service node.)</p>
+</blockquote>
+<ol start="4">
+<li>
+<p>Once completed, save the file and quit nano:
+CTRL+X -&gt; Y -&gt; ENTER.</p>
+</li>
+</ol>
+
+<h4 id="42-sispop-ssservice-file">4.2 sispop-ss.service file<a class="headerlink" href="#42-sispop-ssservice-file" title="Permanent link">&para;</a></h4>
+<ol>
+<li>Create the sispop-ss.service file:
+<pre><code>sudo nano /etc/systemd/system/sispop-ss.service</code></pre>
+</li>
+<li>Copy the text below and paste it into your new file:</li>
+</ol>
+<pre><code>[Unit]
+Description=Sispop storage server
+After=network-online.target
+Requires=sispopd.service
+
+[Service]
+User=snode
+Type=simple
+WorkingDirectory=/home/snode
+Restart=always
+RestartSec=5s
+ExecStart=/home/snode/sispop-storage 0.0.0.0 23023 --sispopd-rpc-port 30000 --sispopd-key  /home/snode/.sispop/key
+
+[Install]
+WantedBy=multi-user.target
+</code></pre>
+
+<ol start="3">
+<li>If you chose a username other than <code>snode</code> then change <code>snode</code> in the <code>User=</code> and <code>ExecStart=</code> lines to the alternative username.</li>
+</ol>
+
+<ol start="4">
+<li>
+<p>Once completed, save the file and quit nano:
+CTRL+X -&gt; Y -&gt; ENTER.</p>
+</li>
+</ol>
+
+<h4 id="43-enabling-service-files">4.3 Enabling Service Files<a class="headerlink" href="#43-enabling-service-files" title="Permanent link">&para;</a></h4>
+<ol>
+<li>
+<p>Reload systemd manager configuration (to make it re-read the new service file):</p>
+<pre><code>sudo systemctl daemon-reload</code></pre>
+</li>
+
+<li><p>Enable sispopd.service so that it starts automatically upon boot:</p>
+<pre><code>sudo systemctl enable sispopd.service sispop-ss.service</code></pre>
+</li>
+
+<li>
+<p>Start sispopd.service:
+<pre><code>sudo systemctl start sispopd.service sispop-ss.service</code></pre></p>
+</li>
+</ol>
+
+<p>The daemon will now start syncing. You won’t be able to do much if it hasn’t synced.</p>
+<p>To see the progress of your sispopd service file you can run the following command:</p>
+<div class="codehilite"><pre><span></span><code>sudo journalctl -u sispopd.service -af
+</code></pre></div>
+
+<p>You should see it syncing the blockchain.</p>
+<p>To see the progress of your sispop-ss service file you can run the following command:</p>
+<div class="codehilite"><pre><span></span><code>sudo journalctl -u sispop-ss.service -af
+</code></pre></div>
+
+<h3 id="step-5-getopen-a-wallet">Step 5 - Get/Open A Wallet<a class="headerlink" href="#step-5-getopen-a-wallet" title="Permanent link">&para;</a></h3>
+<p>While we wait for the daemon to sync, we can now get a wallet going. </p>
+<blockquote>
+<p>*** You do not have to run this wallet on the server and you should not! Download the software and run it from elsewhere for security reasons! ***</p>
+</blockquote>
+<p>You can run the CLI wallet (Command Line Interface wallet) on any other computer, including your home computer to avoid leaving your wallet on the server.</p>
+<p>However, if you do want to run the CLI wallet on another computer, you will either need to run another daemon on that local machine or use a remote node (storage-1.sispop.site:22020, for example). There is also a list of trusted remote nodes in the Sispop Project Discord channel under #links-and-resources.</p>
+<div class="codehilite"><pre><span></span><code>./sispop-wallet-cli --daemon-address &lt;insert address here&gt;
+</code></pre></div>
+
+<p>Or on windows:</p>
+<div class="codehilite"><pre><span></span><code>sispop-wallet-cli.exe --daemon-address &lt;insert address here&gt;
+</code></pre></div>
+
+<p>If you are made of money and are willing to take the small risk of losing all of your funds, you can continue running the wallet inside the Service Node VPS. So we don't have to talk about a myriad of other operating systems or potential user cases, the rest of this guide will assume you are running the wallet in the same VPS.</p>
+<p>As such, it’ll probably save us time to open a second PuTTY session. You can do this by right clicking the window of the current PuTTY session and clicking “Duplicate Session.”</p>
+<p>Log in as the non-root user that we set up before, in our case <code>snode</code>, and launch the wallet using:</p>
+<div class="codehilite"><pre><span></span><code>~/sispop/sispop-wallet-cli
+</code></pre></div>
+
+<blockquote>
+<p>If you are on testnet run the command with the --testnet flag: <code>~/sispop/sispop-wallet-cli --testnet</code></p>
+</blockquote>
+<p>When <code>sispop-wallet-cli</code> first runs, it will request for you to specify a wallet name. Assuming we haven't created one yet, we will use the e.g. name <code>MyWallet</code></p>
+<p>Because this is the first time we have used the name <code>MyWallet</code> the client will prompt us to create a new wallet. Type <code>y</code> and click return to continue.</p>
+<p>The <code>sispop-wallet-cli</code> has generated us a wallet called <code>MyWallet</code> and is now prompting us for a password.</p>
+<blockquote>
+<p>Note:
+When typing the password, the characters will not appear. It will seem as if you are typing and no text is appearing however the terminal is logging every character you type including if it is capitalised or lowercase.</p>
+<p>Write down your wallet name and password on a piece of paper as this information will be required every time we want to enter our wallet.</p>
+<p>Use a password with uppercase letters, lowercase letters, numbers, symbols and make the password at least 9 characters long.</p>
+</blockquote>
+<p>Once we have chosen our password for the wallet we must choose our language. For the purposes of this user guide I suggest you use English by typing in <code>1</code> and clicking return.</p>
+<p>The CLI will generate and spit out several lines of text. The first two lines of text show your wallet public address. This address can be shared, will be used to receive Sispop to your wallet, and will be used during the preparation and registration of our Service Node. All Mainnet Sispop public addresses start with an L and are followed with a string of characters, Testnet Public addresses start with a T. The public address shown will be your primary address, however multiple public addresses can be generated from this primary address.</p>
+<p>Line 13 to 17 show your 25-word mnemonic (“new-monic”) seed. The seed is used to easily backup and restore your wallet without needing any other information. At this stage, grab a pen and paper, and write down your 25 words in order. Store the piece of paper in a safe and secure place, if your words are stored in a text file on your computer or stored online, you increase your risk of someone else getting control of your wallet.</p>
+<p>It is at this point that we should get some Sispop in the wallet. The amount of Sispop required to run a node is derived from the function shown in Sispops <a href="https://sispop.site/proposal">Cryptoeconomic paper</a>. Don't worry if you cant work out the formula, you can use this community created <a href="https://servicenode.sispop.site/sn">tool</a> or, the daemon will display the amount of Sispop required to run the node. If you do not have enough you will have the option to join in or run your own Service Node pool.</p>
+<blockquote>
+<p>If you are running a Service Node on the testnet you will only ever require 100 testnet Sispop to run the Node. You can ask the Telegram @SispopSNBot for some testnet sispop or ask someone in the Sispop Discord Community for some.</p>
+</blockquote>
+<p><strong>If you are staking please do not use Subaddresses. They are currently unsupported by the Sispop wallet.</strong> </p>
+<p>We will need our address to register our Service Node later, to get your primary address type the following command:</p>
+<div class="codehilite"><pre><span></span><code>address
+</code></pre></div>
+
+<p>Highlight the string of characters that were outputted and save this in a notepad for later use, your public address should look similar to:</p>
+<div class="codehilite"><pre><span></span><code>T6TCCyDgjjbddtzwNGryRJ5HntgGYvqZTagBb2mtHhn7WWz7i5JDeqhFiHqu7ret56411ZJS7Thfeis718bVteBZ2UA6Y7G2d
+</code></pre></div>
+
+<p>(Note that this is an example testnet wallet address; your address will start with <code>L</code> if it is a mainnet wallet)</p>
+<blockquote>
+<p><em>NOTE: Do not use CTRL + C to copy your address, it will close the wallet down. Simply highlight the address and this will automatically save the portion you highlighted into your clipboard.</em></p>
+</blockquote>
+<p>Once you have enough Sispop in this wallet, just leave it open, we’ll come back to it in a minute.</p>
+<h3 id="step-6-service-node-registration">Step 6 - Service Node Registration<a class="headerlink" href="#step-6-service-node-registration" title="Permanent link">&para;</a></h3>
+<p>The next part of the guide will split into two sections: 
+* If you are an individual staker and do not require any other contributors to run your Service Node jump into <strong>6.1 - individual Staking</strong>.
+* If you want to run a pooled Service Node or contribute towards a pool jump into <strong>6.2 - Pool Staking</strong></p>
+<hr />
+<h4 id="61-individual-staking">6.1 - Individual Staking<a class="headerlink" href="#61-individual-staking" title="Permanent link">&para;</a></h4>
+<p>If you want to run the Service Node as an individual you will require the following things.</p>
+<ul>
+<li>A fully synchronized, up-to-date Sispop daemon running with the <code>--service-node</code> flag (see step 4).</li>
+<li>A <code>sispop-wallet-cli</code> primary address with enough Sispop in your account to meet the Service Node Staking Requirement (see step 5).</li>
+</ul>
+<p>Now if we have the two above items we can proceed to our daemon to register our Service Node.</p>
+<p>Log in (if not already connected) as the <code>snode</code> user on the VPS running the service node, then start
+the registration process by running the following interactive command:</p>
+<div class="codehilite"><pre><span></span><code>~/sispop/sispopd prepare_registration
+</code></pre></div>
+
+<p>The daemon will output the current staking requirement and prompt you with an input to clarify whether you are an individual staker or you will be running a pool. Type <code>y</code> and click enter as we will be the sole staker.</p>
+<p>The daemon will now prompt us for the Sispop address of the operator. If you followed step 5 you should have this address saved in a notepad, if not run through step 5 again to find your Sispop Address. Once we have the Sispop Address copied to our clipboard we can then right click the terminal screen to paste the address. Double check the address matches the one of your wallet then click enter if it is the same.</p>
+<p>The daemon will now ask for a final confirmation, if you agree to the information provided type <code>y</code> and click enter.</p>
+<p>The daemon will output a command for us to run looking similar to:</p>
+<div class="codehilite"><pre><span></span><code>register_service_node 4294967292 T6TCCyDgjjbddtzwNGryRJ5HntgGYvqZTagBb2mtHhn7WWz7i5JDeqhFiHqu7ret56411ZJS7Thfeis718bVteBZ2UA6Y7G2d 4294967292 100.000000000 1535677391 ec3895ea70a4a91b5ec4b5e1df96a45e07046f1fb0123c754d98fb2d70f4529d 5bb35d7b8ab1acb943bc47913ada8f9d2e6d6e22264e57484a04c1bbfd461f0ee2e5435454cd9b7059b221eb506ce9ea4537ddd9faf1f1757e0ef611a41c0609
+</code></pre></div>
+
+<blockquote>
+<p><em>NOTE: You must run the command outputed by </em><em>your</em><em> daemon and not the command shown above.</em></p>
+</blockquote>
+<p>Copy the whole line of text and paste it into your notepad as we will need to run this command in our <code>sispop-wallet-cli</code>.
+If registering multiple nodes, it will likely be necessary to wait at least 10 blocks between Service Nodes before running the register Service Node command in the wallet.</p>
+<p>You have 2 weeks from the moment of preparing the registration command on the Service Node to actually run the <code>register_service_node</code> command in the wallet, however it is advised to do it as soon as possible.</p>
+<p>Run through step 5 once more to open our Sispop wallet (if you don't already have it open). Once we are in our wallet run the command the daemon outputted for us when we prepared our Service Node registration.</p>
+<p>The wallet will prompt us to confirm our password, then the amount of Sispop to stake. Confirm this by typing <code>y</code> and clicking enter. </p>
+<blockquote>
+<p>Note: At this point you now have locked stakes! To unlock your stake run the following</p>
+</blockquote>
+<p>Well done! Let's continue to the next step <strong>"Step 7 - Service Node Check"</strong> to check if our Service Node is running.</p>
+<h4 id="62-pool-staking">6.2 - Pool Staking<a class="headerlink" href="#62-pool-staking" title="Permanent link">&para;</a></h4>
+<h5 id="minimum-contribution-rules">Minimum Contribution Rules<a class="headerlink" href="#minimum-contribution-rules" title="Permanent link">&para;</a></h5>
+<p>Infinite Staking introduces new limitations on the number of transactions that can be contributed to a Service Node, changing the minimum contribution rules for participating in the Service Node. </p>
+<p>Service Nodes accept at most 4 contributions, meaning the minimum contribution to a Service Node becomes:</p>
+<p><center><img alt="Contribution" src="../../assets/contribution.svg" /></center></p>
+<p>In a pooled Service Node with reserved spots, the Minimum Contribution must be either the Reserved Amount or the Contribution determined by the above equation, whichever is larger.</p>
+<p><center><img alt="Min Contribution" src="../../assets/mincontribution.svg" /></center></p>
+<p>A simplistic example being, if the staking requirement is 24,000 Sispop then if,</p>
+<ul>
+<li>
+<p>Operator contributes 50% of the requirement (12,000 Sispop)</p>
+</li>
+<li>
+<p>The next contributor must contribute at least (⅓ * 12,000) Sispop i.e. 4000 Sispop to become a participant.</p>
+</li>
+<li>
+<p>If this contributor had reserved a spot for more than 4000 Sispop, their Minimum Contribution would be that amount.</p>
+</li>
+</ul>
+<p>There are rules in the client software in place to stop users from irreversibly funding a Service Node into an invalid state.</p>
+<p>Depending on the individual and their circumstance they will need to:</p>
+<ul>
+<li>
+<p>Jump into section <strong><a href="#621-operator">6.2.1 - Operator</a></strong> if they are running the daemon and hosting the pool;</p>
+</li>
+<li>
+<p>Jump into section <strong><a href="#622-pool-contributor">6.2.2 - Pool Contributor</a></strong> if they are contributing to someone's Service Node.</p>
+</li>
+</ul>
+<blockquote>
+<p><em>NOTE: It is advised to read both sections of </em><strong>"6.2 - Pool Staking"</strong><em> to have a better understanding of the process.</em></p>
+</blockquote>
+<hr />
+<h5 id="621-operator">6.2.1 - Operator<a class="headerlink" href="#621-operator" title="Permanent link">&para;</a></h5>
+<p>The Operator is the individual who will be hosting the pool and running the Service Node daemon, thus incurring the operating expenses encompassed by running a node.</p>
+<p>The Operator will need to have:</p>
+<ul>
+<li>
+<p>A fully synchronized, up-to-date Sispop daemon running with the <code>--service-node</code> flag (see step 4) at all times.</p>
+</li>
+<li>
+<p>A <code>sispop-wallet-cli</code> primary address with enough Sispop in their account to meet 25% of the Staking Requirement.</p>
+</li>
+<li>
+<p>1-3 other contributors who also have a wallet (<code>sispop-wallet-cli</code> or the desktop GUI wallet) with enough Sispop in their accounts to meet 25% of the staking requirement.</p>
+</li>
+<li>
+<p>If the operator wants to reserve contribution spots for specific contributors: The address and contribution amounts the 1-3 contributors will stake.</p>
+</li>
+</ul>
+<blockquote>
+<p><em>NOTE: The other contributors addresses are optional to have as you can create your pool to be open to anyone to contribute to, however they are recommended to have to avoid any issues of other individuals stealing their spots.  On the other hand, a reserved contribution spot can only be filled by that contributor: if they change their mind before submitting a stake your service node will be stuck inactive, so it is recommended to use reserved contribution spots only with contributors you trust.</em></p>
+</blockquote>
+<p>Now if we have the three/four above items we can proceed to our daemon to register our Service Node.</p>
+<p>Log in (if not already connected) as the <code>snode</code> user on the VPS running the service node, then start
+the registration process by running the following interactive command:</p>
+<div class="codehilite"><pre><span></span><code>~/sispop/sispopd prepare_registration
+</code></pre></div>
+
+<p>The terminal will prompt the operator to specify if they will contribute the entire stake, because we are running this as a pooled Service Node we will type <code>n</code> and click enter.</p>
+<p>Next the terminal will request the input for the operator cut. This value is between 0-100 and represents the percentage of the reward the operator will receive before the reward is distributor to the share holders. If you have agreed to a 10% operator cut with the other contributors you would type <code>10</code> and click return.</p>
+<p>The terminal will now display the minimum reserve the operator can contribute and request the operator to input the amount in Sispop they wish to contribute. Type your desired <code>&lt;operator contribution&gt;</code> and click return.</p>
+<p>Once we have set the operators desired stake amount we have the option to either leave the pool open for anyone to contribute or lock a reserve for individuals that have agreed with us to stake within our Service Node. </p>
+<hr />
+<h6 id="reserved-pool">Reserved Pool<a class="headerlink" href="#reserved-pool" title="Permanent link">&para;</a></h6>
+<p>If the operator wishes to reserve spots for specific contributors they should type <code>y</code> and click return. </p>
+<p>The terminal will now prompt the operator for the number of additional contributors they have organised to be apart of this Service Node. Type in the number of reserved contributors, not including themselves, and click return.</p>
+<p>The daemon will now prompt us for the Sispop address of the operator. If you followed step 5 you should have this address saved in a notepad, if not run through step 5 again to find your address. Once we have the Sispop Address copied to our clipboard we can then right click the terminal screen to paste the address then click return to confirm your address.</p>
+<p>Next the operator must input the amount of Sispop each contributor will contribute and the contributor's address.</p>
+<blockquote>
+<p><em>NOTE: It is possible to reserve only some of the required stakes for specific contributors while leaving the remaining stake open.</em></p>
+</blockquote>
+<p>You will now be asked to confirm the information above is correct.</p>
+<hr />
+<h6 id="open-pool">Open Pool<a class="headerlink" href="#open-pool" title="Permanent link">&para;</a></h6>
+<p>If the operator wishes to leave their pool complete open to contributions they should type <code>n</code> and click return. The terminal will prompt the operator to input their address. Once the address has been inputted the terminal will display the remaining portion that needs to be contributed by others. If you agree click <code>y</code> and hit return.</p>
+<hr />
+<p>The daemon will display a summary of the information we entered. This is our chance for a final check over to make sure we entered in the right information. If you confirm the information is correct type <code>y</code> and click return.</p>
+<p>The daemon will output a command for us to run within our wallet, looking similar to:</p>
+<div class="codehilite"><pre><span></span><code>register_service_node 214748364 T6UCEoWvJHCJq5biK3LMQZ4CRXAaqiPda2kCRRYYYEMFfxYoqnUo7Nx88RL3wmENwN4kfjDSp2jMN1g6PSErKrSu2EEp8UMy5 1073741823 T6TCCyDgjjbddtzwNGryRJ5HntgGYvqZTagBb2mtHhn7WWz7i5JDeqhFiHqu7ret56411ZJS7Thfeis718bVteBZ2UA6Y7G2d 3221225469 25.000000000 1535692249 5dac247e90ced2dcd9e51faec8792acb0c11b4c700640d9104b17c868ea167e3 cc11eef804c11d3e93cf8c488c10d97b8cec9ee2b38e6666ff07749c2911aa06ce310edc926a4d2f50a588e9c15afcc20e935a0f188aa7caa764a62058dec80d
+</code></pre></div>
+
+<blockquote>
+<p><em>NOTE: You must run the command outputed by </em><em>your</em><em> daemon and not the command shown above.</em></p>
+</blockquote>
+<p>Copy the whole line of text in your daemon and paste it into your notepad as we will need to run this command in our <code>sispop-wallet-cli</code>.</p>
+<p>You have 2 weeks from the moment of registering the Service Node to run the <code>register_service_node</code> command, however it is advised to do it as soon as possible.</p>
+<p>Before you disconnect from your VPS run the following command to get your <code>&lt;Service Node Public Key&gt;</code> and save it in your notepad (your contributors will need it):</p>
+<div class="codehilite"><pre><span></span><code>~/sispop/sispopd print_sn_key
+</code></pre></div>
+
+<p>Run through step 5 once more to open our Sispop wallet. Once we are in our wallet run the command the daemon outputted for us when we prepared our Service Node. The wallet will prompt us to confirm our password, then the amount of Sispop to stake. Confirm this by typing <code>y</code> and clicking enter.</p>
+<p>Once this command completes your staking transaction will be sent to be included on the blockchain.
+It may take a few minutes for the transaction to be mined into a block; you can check the status
+using</p>
+<div class="codehilite"><pre><span></span><code>~/sispop/sispopd print_sn_status
+</code></pre></div>
+
+<p>or by looking for your <code>&lt;Service Node Public Key&gt;</code> in the "Service Nodes Awaiting" section on <a href="https://explorer.sispop.site">explorer.sispop.site</a> (or <a href="https://sispoptestnet.com">sispoptestnet.com</a> for a testnet service node).</p>
+<p>Once the service node registration is received you can send the <code>&lt;Service Node Public Key&gt;</code> to your contributors with the amount of Sispop they are required to stake.</p>
+<blockquote>
+<p><em>NOTE: the final amount will typically be slightly lower than what you entered in the prepare_registration command.  This is expected: the required amounts are based on the registration block height which has usually advanced by a couple blocks between the time you prepared the registration and the time it gets mined into the blockchain.</em></p>
+</blockquote>
+<p>At this point we will need to wait until all contributors have staked before the service node activates and becomes eligible to receive rewards.</p>
+<hr />
+<h5 id="622-pool-contributor">6.2.2 - Pool Contributor<a class="headerlink" href="#622-pool-contributor" title="Permanent link">&para;</a></h5>
+<p>The pool contributor must first receive the Service Node Pubkey and the requirements (amount of sispop to send) from the Service Node Operator.</p>
+<blockquote>
+<p><strong>If you are staking please do not use Subaddresses. They are currently unsupported by the Sispop wallet</strong> </p>
+</blockquote>
+<p>The pool contributor must have downloaded the necessary binaries, is running a daemon or is connected to a remote node, has generated a wallet through either the <code>sispop-wallet-cli</code> or the desktop GUI wallet, and has enough Sispop to stake. They can then run the following command in their <code>sispop-wallet-cli</code> .</p>
+<div class="codehilite"><pre><span></span><code>stake &lt;Service Node Pubkey&gt; &lt;contribution amount&gt;
+</code></pre></div>
+
+<p>Where the <code>&lt;Service Node Pubkey&gt;</code> is the Pubkey provided from the Service Node operator and <code>&lt;contribution amount&gt;</code> is the amount of Sispop they are going to stake which they agreed to with the Service Node Operator.</p>
+<p>If using the desktop GUI wallet, the Stake command can be found under the Advanced - Service Node
+menu.  Enter the service <code>&lt;Service Node Pubkey&gt;</code> and <code>&lt;contribution amount&gt;</code> and hit the Stake
+button.</p>
+<p>At this stage you will need to wait for the other contributors to provide their collateral. Once everyone has staked you can refer to <strong>“Step 7 - Service Node Check”</strong> to see where your Service Node Operator’s node is in the list.</p>
+<p>Congratulations, you are now staking.</p>
+<h3 id="step-7-service-node-check">Step 7 - Service Node Check<a class="headerlink" href="#step-7-service-node-check" title="Permanent link">&para;</a></h3>
+<p>After we have locked our collateral we will need to check if our Service Node Pubkey is sitting in the list with the other Service Node’s on the network. This will prove our Service Node is running, recognised and will receive a reward if it keeps running.</p>
+<p>Connect to the VPS where the service node is running and run the following command to see our Service Node Public Key:</p>
+<div class="codehilite"><pre><span></span><code>~/sispop/sispopd print_sn_key
+</code></pre></div>
+
+<p>The Service Node Public Key is used to identify our Service Node within the list of Service Nodes currently on the network.</p>
+<p>If you want more detailed Service Node status you can use the follow command:</p>
+<div class="codehilite"><pre><span></span><code>~/sispop/sispopd print_sn_status
+</code></pre></div>
+
+<p>You can jump onto <a href="https://explorer.sispop.site/">https://explorer.sispop.site/</a> to see if your Service Node is in the list or we can continue in the terminal to output the same information.</p>
+<blockquote>
+<p>If you are running your Service Node on testnet go to <a href="https://sispoptestnet.com/">https://sispoptestnet.com/</a> instead.</p>
+</blockquote>
+<p>To check this information directly with the service node itself, first get the current block height by running <code>~/sispop/sispopd status</code> into the terminal: it will output this information. Once we have the block height we can then check the current Service Nodes on the network at our specified block height.</p>
+<p>Run the command <code>~/sispop/sispopd print_quorum_state &lt;block height&gt;</code> replacing <code>&lt;block height&gt;</code> with the number minus 1 that was outputted when running <code>status</code> command.</p>
+<p>If your <code>&lt;Service Node Pubkey&gt;</code> is sitting in the list you know you are now staking.</p>
+<h3 id="step-8-unlock-stake">Step 8 - Unlock Stake<a class="headerlink" href="#step-8-unlock-stake" title="Permanent link">&para;</a></h3>
+<p>Service Nodes will continually receive block rewards indefinitely until a stake is unlocked or the Service Node becomes deregistered. Unlocking is available via the following command which needs to be run in the command line wallet:</p>
+<div class="codehilite"><pre><span></span><code>request_stake_unlock &lt;service node key&gt;
+</code></pre></div>
+
+<p>Once the unlock is requested and the request is included in a block in the blockchain, the Service Node will then expire in 15 days (10800 blocks) and the funds will become unlocked after expiry.</p>
+<p>In pooled nodes, any contributor that requests the stake to unlock will schedule the Service Node for expiration. All locked stakes in that Service Node will be unlocked in 15 days (10800 blocks). Once the unlock is requested, this process can not be undone or prolonged. Service Node participants will continue receiving rewards until expiration.</p>
+<p>Deregistrations can be issued at any point during the active lifecycle of the Service Node. This is inclusive of the time period during which the Service Node is scheduled for expiry. Getting deregistered removes your Service Node from the network and your stakes are placed into a list of blacklisted transactions. Blacklisted transactions are locked and unspendable for 30 days (21600 blocks) from the block in which the Service Node was deregistered.</p>
+<p>Receiving a deregistration after participants have already requested the stake to unlock overrides the 15 day (10800 blocks) unlock time, and resets the unlock time to 30 days (21600 blocks).</p>
+<h3 id="optional">Optional<a class="headerlink" href="#optional" title="Permanent link">&para;</a></h3>
+<h4 id="see-locked-stake-amount-and-duration">See Locked Stake Amount and Duration<a class="headerlink" href="#see-locked-stake-amount-and-duration" title="Permanent link">&para;</a></h4>
+<p>We can also view our locked stake by running the following command from our <code>sispop-wallet-cli</code> we staked from:</p>
+<div class="codehilite"><pre><span></span><code>print_locked_stakes
+</code></pre></div>
+
+<h2 id="express-setup-guide">Express Setup Guide<a class="headerlink" href="#express-setup-guide" title="Permanent link">&para;</a></h2>
+<p>This section is for power users who are more familiar with servers and the CLI interface. There's a couple of things your going to want to do before you commence.</p>
+<p><strong>1. Get a Server that meets requirements</strong></p>
+<p><strong>2. Run the Daemon on a server from a non-root user account, then stake from a local wallet (or a wallet on a separate server).</strong></p>
+<blockquote>
+<p>Where <code>&lt;VERSION&gt;</code> is mentioned replace with the latest version for <a href="https://github.com/sispop-dev/sispop/releases/latest">sispopd</a> and <a href="https://github.com/sispop-dev/sispop-storage-server/releases/latest">Storage Server</a>, example <code>v3.0.6</code>.</p>
+</blockquote>
+<p><strong>3. Connect via SSH to your server</strong></p>
+<p><strong>4. add new user</strong></p>
+<div class="codehilite"><pre><span></span><code>sudo adduser snode
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code>usermod -aG sudo snode
+</code></pre></div>
+
+<p><strong>5. login to your new user account via SSH</strong> </p>
+<div class="codehilite"><pre><span></span><code>snode@&lt;ipaddress&gt;
+</code></pre></div>
+
+<p><strong>6. Update necessary security patches and system utilities</strong></p>
+<div class="codehilite"><pre><span></span><code>sudo apt update
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code>sudo apt upgrade
+</code></pre></div>
+
+<p><strong>7. Download &amp; unzip Sispop</strong></p>
+<div class="codehilite"><pre><span></span><code>sudo apt install wget unzip
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code>wget https://github.com/sispop-dev/sispop/releases/download/v&lt;VERSION&gt;/sispop-linux-x64-v&lt;VERSION&gt;.zip
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code>wget https://github.com/sispop-dev/sispop-storage-server/releases/download/v&lt;VERSION&gt;-release/sispop-storage-linux-x64-v&lt;VERSION&gt;.tar.xz
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code>tar -xvf sispop-linux-x64-v&lt;VERSION&gt;.tar.xz
+tar -xvf sispop-storage-linux-x64-v&lt;VERSION&gt;.tar.xz
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code>ln -snf sispop-linux-x64-&lt;VERSION&gt; sispop
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code>ln -snf sispop-storage-linux-x64-v&lt;VERSION&gt; sispop-ss
+</code></pre></div>
+
+<p><strong>8. Set up Sispop to run as a service</strong></p>
+<div class="codehilite"><pre><span></span><code>sudo nano /etc/systemd/system/sispopd.service
+</code></pre></div>
+
+<p>Paste the following:</p>
+<div class="codehilite"><pre><span></span><code>[Unit]
+Description=sispopd service node
+After=network-online.target
+
+[Service]
+Type=simple
+User=snode
+ExecStart=/home/snode/sispop/sispopd --non-interactive --service-node --service-node-public-ip SERVERIP --storage-server-port 30000
+Restart=always
+RestartSec=30s
+
+[Install]
+WantedBy=multi-user.target
+</code></pre></div>
+
+<p>Replacing <code>SERVERIP</code> in the line <code>ExecStart=</code> with your servers IP.</p>
+<p>Save and exit:
+<code>CTRL+X -&gt; Y -&gt; ENTER</code></p>
+<div class="codehilite"><pre><span></span><code>sudo nano /etc/systemd/system/sispop-ss.service
+</code></pre></div>
+
+<p>Paste the following:</p>
+<div class="codehilite"><pre><span></span><code>[Unit]
+Description=Sispop storage server
+After=network-online.target
+Requires=sispopd.service
+
+[Service]
+User=snode
+Type=simple
+WorkingDirectory=/home/snode
+Restart=always
+RestartSec=5s
+ExecStart=/home/snode/sispop-storage 0.0.0.0 23023 --sispopd-rpc-port 30000 --sispopd-key  /home/snode/.sispop/key
+
+[Install]
+WantedBy=multi-user.target
+</code></pre></div>
+
+<p>Enable and start the service:</p>
+<div class="codehilite"><pre><span></span><code>sudo systemctl daemon-reload
+sudo systemctl enable sispopd.service sispop-ss.service
+sudo systemctl start sispopd.service sispop-ss.service
+</code></pre></div>
+
+<p>Wait for the Sispop Daemon sync the blockchain (1 - 8 Hours depending on internet speed).  You can
+watch the progress using:</p>
+<div class="codehilite"><pre><span></span><code>sudo journalctl -u sispopd.service -af
+</code></pre></div>
+
+<p>Hit <code>Ctrl-C</code> when you are tired of watching.</p>
+<p><strong>9. Open a Wallet</strong></p>
+<p>This wallet can be in a <code>screen</code> session on the Service Node machine, or a wallet on your local computer (assuming you have downloaded the binaries locally).</p>
+<div class="codehilite"><pre><span></span><code>cd sispop-linux-x64-&lt;VERSION&gt;
+</code></pre></div>
+
+<p>Linux/MAC - <code>./sispop-wallet-cli</code>
+Windows - <code>sispop-wallet-cli</code></p>
+<p>Enter Name: Name your wallet</p>
+<p>Enter password </p>
+<p>Language: <code>1</code> (for English)</p>
+<p>Securely store:</p>
+<ol>
+<li>
+<p>Address</p>
+</li>
+<li>
+<p>Seed Phrase </p>
+</li>
+<li>
+<p>Pass-phrase</p>
+</li>
+</ol>
+<p>Send enough Sispop to fund a node, wait for Balance to be unlocked (20 mins, 10 confirmations)</p>
+<p><strong>10. Register your Service Node</strong></p>
+<p>Connect via SSH to your VPS with the Service Node running (<code>snode@&lt;ipaddress&gt;</code>).</p>
+<div class="codehilite"><pre><span></span><code>~/sispop/sispopd prepare_registration
+</code></pre></div>
+
+<p>Contribute entire Stake: <code>Y/N</code></p>
+<p>Enter Sispop Address</p>
+<p>Enable Restaking: <code>Y/N</code></p>
+<p>Confirm: <code>Y</code></p>
+<p>Copy green registration message</p>
+<p><code>Ctrl +AD</code></p>
+<p><strong>11. Reattach to Service Node or local wallet</strong></p>
+<p>Paste in registration message <code>&lt;enter&gt;</code></p>
+<p><strong>12 Connect back to Service Node VPS account</strong></p>
+<div class="codehilite"><pre><span></span><code>~/sispop/sispopd print_sn_key
+</code></pre></div>
+
+<p>Copy service node key, and search for it on:</p>
+<p><a href="https://explorer.sispop.site/service_nodes">https://explorer.sispop.site/service_nodes</a>.</p>
+<p>or check the detailed status using:</p>
+<div class="codehilite"><pre><span></span><code>~/sispop/sispopd print_sn_key
+</code></pre></div>
+
+<h2 id="conclusion">Conclusion<a class="headerlink" href="#conclusion" title="Permanent link">&para;</a></h2>
+<p>Well done! You will receive a block reward when your Service Node has been active for some time and the network chooses you within the list.</p>
+<p><strong>Bonus</strong>: Use the community-run telegram bot <code>@SispopSNBot</code> to receive on-the-fly updates about your service node. Props to @jagerman42 for building this.</p>
+<p><strong>Bonus 2</strong>: View https://servicenode.sispop.site/sn for more details on Sispop Service Node staking requirements. </p>
+<p>This guide will be regularly updated when new features are added to Snodes. <a href="https://discord.gg/sqZCybf2ZZ">Join the discord for more discussion.</a></p>
+<p>If you can improve this guide, please submit a pull request. </p>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/sispop-dev" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M186.1 328.7c0 20.9-10.9 55.1-36.7 55.1s-36.7-34.2-36.7-55.1 10.9-55.1 36.7-55.1 36.7 34.2 36.7 55.1zM480 278.2c0 31.9-3.2 65.7-17.5 95-37.9 76.6-142.1 74.8-216.7 74.8-75.8 0-186.2 2.7-225.6-74.8-14.6-29-20.2-63.1-20.2-95 0-41.9 13.9-81.5 41.5-113.6-5.2-15.8-7.7-32.4-7.7-48.8 0-21.5 4.9-32.3 14.6-51.8 45.3 0 74.3 9 108.8 36 29-6.9 58.8-10 88.7-10 27 0 54.2 2.9 80.4 9.2 34-26.7 63-35.2 107.8-35.2 9.8 19.5 14.6 30.3 14.6 51.8 0 16.4-2.6 32.7-7.7 48.2 27.5 32.4 39 72.3 39 114.2zm-64.3 50.5c0-43.9-26.7-82.6-73.5-82.6-18.9 0-37 3.4-56 6-14.9 2.3-29.8 3.2-45.1 3.2-15.2 0-30.1-.9-45.1-3.2-18.7-2.6-37-6-56-6-46.8 0-73.5 38.7-73.5 82.6 0 87.8 80.4 101.3 150.4 101.3h48.2c70.3 0 150.6-13.4 150.6-101.3zm-82.6-55.1c-25.8 0-36.7 34.2-36.7 55.1s10.9 55.1 36.7 55.1 36.7-34.2 36.7-55.1-10.9-55.1-36.7-55.1z"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://twitter.com/sispop_" target="_blank" rel="noopener" title="twitter.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://t.me/Sispop" target="_blank" rel="noopener" title="t.me" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M248 8C111.033 8 0 119.033 0 256s111.033 248 248 248 248-111.033 248-248S384.967 8 248 8Zm114.952 168.66c-3.732 39.215-19.881 134.378-28.1 178.3-3.476 18.584-10.322 24.816-16.948 25.425-14.4 1.326-25.338-9.517-39.287-18.661-21.827-14.308-34.158-23.215-55.346-37.177-24.485-16.135-8.612-25 5.342-39.5 3.652-3.793 67.107-61.51 68.335-66.746.153-.655.3-3.1-1.154-4.384s-3.59-.849-5.135-.5q-3.283.746-104.608 69.142-14.845 10.194-26.894 9.934c-8.855-.191-25.888-5.006-38.551-9.123-15.531-5.048-27.875-7.717-26.8-16.291q.84-6.7 18.45-13.7 108.446-47.248 144.628-62.3c68.872-28.647 83.183-33.623 92.511-33.789 2.052-.034 6.639.474 9.61 2.885a10.452 10.452 0 0 1 3.53 6.716 43.765 43.765 0 0 1 .417 9.769Z"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://www.reddit.com/r/SispopProject" target="_blank" rel="noopener" title="www.reddit.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M201.5 305.5c-13.8 0-24.9-11.1-24.9-24.6 0-13.8 11.1-24.9 24.9-24.9 13.6 0 24.6 11.1 24.6 24.9 0 13.6-11.1 24.6-24.6 24.6zM504 256c0 137-111 248-248 248S8 393 8 256 119 8 256 8s248 111 248 248zm-132.3-41.2c-9.4 0-17.7 3.9-23.8 10-22.4-15.5-52.6-25.5-86.1-26.6l17.4-78.3 55.4 12.5c0 13.6 11.1 24.6 24.6 24.6 13.8 0 24.9-11.3 24.9-24.9s-11.1-24.9-24.9-24.9c-9.7 0-18 5.8-22.1 13.8l-61.2-13.6c-3-.8-6.1 1.4-6.9 4.4l-19.1 86.4c-33.2 1.4-63.1 11.3-85.5 26.8-6.1-6.4-14.7-10.2-24.1-10.2-34.9 0-46.3 46.9-14.4 62.8-1.1 5-1.7 10.2-1.7 15.5 0 52.6 59.2 95.2 132 95.2 73.1 0 132.3-42.6 132.3-95.2 0-5.3-.6-10.8-1.9-15.8 31.3-16 19.8-62.5-14.9-62.5zM302.8 331c-18.2 18.2-76.1 17.9-93.6 0-2.2-2.2-6.1-2.2-8.3 0-2.5 2.5-2.5 6.4 0 8.6 22.8 22.8 87.3 22.8 110.2 0 2.5-2.2 2.5-6.1 0-8.6-2.2-2.2-6.1-2.2-8.3 0zm7.7-75c-13.6 0-24.6 11.1-24.6 24.9 0 13.6 11.1 24.6 24.6 24.6 13.8 0 24.9-11.1 24.9-24.6 0-13.8-11-24.9-24.9-24.9z"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://www.youtube.com/sispopnetwork" target="_blank" rel="noopener" title="www.youtube.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M549.655 124.083c-6.281-23.65-24.787-42.276-48.284-48.597C458.781 64 288 64 288 64S117.22 64 74.629 75.486c-23.497 6.322-42.003 24.947-48.284 48.597-11.412 42.867-11.412 132.305-11.412 132.305s0 89.438 11.412 132.305c6.281 23.65 24.787 41.5 48.284 47.821C117.22 448 288 448 288 448s170.78 0 213.371-11.486c23.497-6.321 42.003-24.171 48.284-47.821 11.412-42.867 11.412-132.305 11.412-132.305s0-89.438-11.412-132.305zm-317.51 213.508V175.185l142.739 81.205-142.739 81.201z"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://www.facebook.com/SispopNetwork/" target="_blank" rel="noopener" title="www.facebook.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M504 256C504 119 393 8 256 8S8 119 8 256c0 123.78 90.69 226.38 209.25 245V327.69h-63V256h63v-54.64c0-62.15 37-96.48 93.67-96.48 27.14 0 55.52 4.84 55.52 4.84v61h-31.28c-30.8 0-40.41 19.12-40.41 38.73V256h68.78l-11 71.69h-57.78V501C413.31 482.38 504 379.78 504 256z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.f886a092.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.aecac24b.min.js"></script>
+      
+        <script src="../../JAVASCRIPT/links.js"></script>
+      
+        <script src="../../JAVASCRIPT/style.js"></script>
+      
+    
+  </body>
+</html>
