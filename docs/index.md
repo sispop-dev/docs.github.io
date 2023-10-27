@@ -41,6 +41,7 @@ Otherwise to begin browsing Sispop Docs [click here](Introduction/SispopNetwork.
 
 ## Copyright
 
-Copyright (c) 2018 The Sispop Project.   
+         Copyright (c)      2023 The Sispop Project.
+Portions Copyright (c) 2018-2023 The Oxen Project.   
 Portions Copyright (c) 2014-2018 The Monero Project.   
 Portions Copyright (c) 2012-2013 The Cryptonote developers.
