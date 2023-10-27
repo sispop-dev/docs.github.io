@@ -1,0 +1,12 @@
+title: Sispop Documentation | Sispop Governance Overview
+description: Governance is an essential part of cryptocurrency design and should be supported at the protocol level. The risk of weak, informally defined governance has been studied extensively throughout the history of blockchain technology.
+
+# Sispop Governance
+
+Governance is an essential part of cryptocurrency design and should be supported at the protocol level. The risk of weak, informally defined governance has been studied extensively throughout the history of blockchain technology.  Bitcoin and Ethereum experienced contentious hard forks that split the focus and efforts of their respective communities. Although hard forks can be used as a governance strategy, they should always be considered as a last resort rather than the solution to every contentious issue.  The Sispop governance system is designed to resolve potential issues by providing a structured environment for discourse and representation, and also to source funding for the development of Sispop without reliance on external influence or altruism.
+
+Beyond the prevention of hard forks, governance structures should create the means to internally  fund  new  projects  which improve upon the Sispop ecosystem. [Funding projects internally](../Governance/SispopFundingSystem.md) can prevent the formation of special interest groups that do not necessarily have motives that are in line with the users, miners, or Service Nodes. We have seen this in Bitcoin and various Bitcoin forks with the formation of for-profit companies, such as Blockstream, Bitcoin ABC, and Bitcoin Unlimited, that have been frequently accused of hiring developers to make protocol-specific changes to Bitcoin and Bitcoin Cash aimed to further their own business objectives or follow their specific ideology.
+
+It is for this reason that in every Sispop block, 5% of the reward is allocated for the purpose of network governance.  This provides a steady flow of Sispop that will be distributed amongst community projects, software developers, and integration teams.
+
+In a future update, of this 5% block reward, 3.75% will be controlled by the Sispop Foundation and 1.25% will be controlled by the [Service Nodes](../ServiceNodes/SNOverview.md) through the [Sispop Funding System](../Governance/SispopFundingSystem.md). This will encourage fair representation of the Service Nodes and will allow for community funding proposals that can occur outside of the direct control of the Sispop Foundation.
