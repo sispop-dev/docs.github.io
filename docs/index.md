@@ -3,16 +3,6 @@ description: Head to the Sispop Documentation Website if you want to learn more 
 
 # Sispop Network
 
-## Quick Navigation
-
-|                              **About**                             	|                                                                                            **Wallets**                                                                                           	|                                           **Private Messenger**                                           	|                                  **Service Nodes**                                 	|                                 **Sispopnet**                                 	|
-|:------------------------------------------------------------------:	|:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:	|:----------------------------------------------------------------------------------------------:	|:----------------------------------------------------------------------------------:	|:---------------------------------------------------------------------------:	|
-|                 ![Logo](assets/images/sispop_sample.png)                	|                                                                            ![Wallets](assets/images/SispopInterface.png)                                                                           	|                             ![Session](assets/images/SispopPrivate.png)                            	|                     ![ServiceNodes](assets/images/SispopBox.png)                     	|                   ![Sispopnet](assets/images/SispopSecure.png)                  	|
-|               [About Sispop](Introduction/SispopNetwork/)               	|                                                                      [Which wallet should you use?](Wallets/WalletsOverview/)                                                                      	|                              [Session](SispopServices/Messenger/Session/)                              	|                      [Service Nodes](ServiceNodes/SNOverview/)                      	|                      [Sispopnet](Sispopnet/SispopnetOverview/)                     	|
-| See more information on the different aspects of the Sispop Network. 	| Learn more about which wallet best suits you and see the guides to help you set one up. 	| Learn more about [Session](https://getsession.org)), our Private messenger. 	| Learn more about Sispop Service Nodes and see step by step guides to help you set one up. 	| Learn more about the Sispopnet and follow step by step guides to gain access. 	|
-
-## Information is Important
-
 
 In the dynamic realm of cryptocurrency, where innovation and security are paramount, a groundbreaking digital asset has emerged - Sispop. Inspired by the privacy-focused features of Monero and Loki, Sispop takes the concept of anonymity to new heights, offering a truly secure and private platform for digital transactions.
 
@@ -62,7 +52,7 @@ If you are unsure where to start check out our "Getting Started" page by [clicki
 
 ## Copyright
 
-         Copyright (c)      2023 The Sispop Project.
+Copyright (c)      2023 The Sispop Project.
 Portions Copyright (c) 2018-2023 The Oxen Project.   
 Portions Copyright (c) 2014-2018 The Monero Project.   
 Portions Copyright (c) 2012-2013 The Cryptonote developers.

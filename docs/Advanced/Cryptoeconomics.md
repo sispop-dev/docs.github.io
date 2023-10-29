@@ -8,9 +8,7 @@ Sispop is a Blockchain network oriented toward the provision of privacy-preservi
 To solve this problem the Sispop Project team commissioned two Economic papers:
 
 1. [Cryptoeconomics of the Sispop Network](https://sispop.site/cryptoeconomics): This Economic Report was commissioned to characterise the game theory behind incentivising Service Node operators. 
-2. [Sispop Cryptoeconomics](https://sispop.site/proposal): This Report was commissioned to apply the game theory specific to the Sispop Networks economics.
-
-These 2 papers analysed the [Block Reward](#block-reward), [Block Reward Split](#block-reward-split), [Inflation](#inflation), [Circulating Supply](#circulating-supply) and the amount of potential Service Nodes on the network to develop a cryptoeconomic solution to incentivise Service Node Operators.
+2. [Sispop Cryptoec
 
 ## Block Rewards
 
@@ -19,11 +17,12 @@ A block reward is the reward created when a new block has been generated. The re
 ### Sispop Block Reward
 The Sispop Block Reward is generated in a similar manner to most proof-of-work cryptocurrencies. Miners use proof-of-work to generate a block and then a reward is released to the network. The reward is then distributed not only distributed to the Miner but to a Service Node Operator and the Governance pool.
 
-The amount of Sispop rewarded `BR` to the network at each block height `h` follows the following equation:
+The amount of Sispop rewarded goes like this:
 
-<center>![Block Reward Formula](../assets/blockreward.svg)</center>
+- Miners: 600 SISPOP
 
-This block reward formula is a result of [Sispop's Cryptoeconomic study](https://sispop.site/proposal), on the 30th of July, 2018, at block 64324, the Sispop block reward went from being calculated in terms of the circulating supply with an emission speed factor of 20, to be derived from the block height.
+- Service Node: 1650 SISPOP
+
 
 ### Block Reward Split
 
