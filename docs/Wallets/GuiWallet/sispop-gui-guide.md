@@ -31,7 +31,7 @@ Once opened the wallet will need to be configured.
 
 ### 1.1: Choose your language.
 
-<center>![Language selection](../../assets/images/electron2.JPG)</center>
+<center>![Language selection](../../assets/images/electron2.png)</center>
 
 ### 1.2: Configure your settings.
 
